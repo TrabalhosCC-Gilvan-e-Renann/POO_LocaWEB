@@ -16,6 +16,12 @@ public class LocaWEB {
         return contas.logar(email, senha);
     }
 
+    public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard) {
+        Account conta = new Account(name, cpf, email,pass,numberCard);
+        contas.adicionar(conta);
+    }
+
+
     public AccountBusiness getContas() {
         return contas;
     }

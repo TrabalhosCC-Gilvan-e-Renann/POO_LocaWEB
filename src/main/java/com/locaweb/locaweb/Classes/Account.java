@@ -9,13 +9,13 @@ public class Account extends Client {
     String dateOfCreate;
     byte lastPaidMonthly;
     /*Para simplificar vamos considerar que a mensalidade de todas as contas devem ser pagas no dia 1*/
-    public Account(String name, int cpf, String email, String pass, int numberCard){
+    public Account(String name, String cpf, String email, String pass, String numberCard){
         super(name, cpf, email,pass, numberCard);
         this.blockedForADM = false;
         this.blockedForPay = false;
         this.lastPaidMonthly = 0; //Considere que o Computador pegou o mes atual
         this.dateOfCreate = "00/00/0000"; // considere que o Computador pegou a data atual
-        this.id = cpf + 1; // Considere que o banco de dados, passou o id
+        this.id = Integer.parseInt(cpf) + 1; // Considere que o banco de dados, passou o id
     }
     public int PaidMonthly(){
         byte mes=0;
@@ -52,7 +52,7 @@ public class Account extends Client {
         return pass;
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return cpf;
     }
 
@@ -60,7 +60,7 @@ public class Account extends Client {
         return name;
     }
 
-    public int getCard() {
+    public String getCard() {
         return numberCard;
     }
     

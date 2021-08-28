@@ -10,7 +10,7 @@ public class RepositoryAccounts implements IRepositorioAccounts{
 
     public RepositoryAccounts(){
         contas = new ArrayList<Account>();
-        contas.add(new Account("Administrador",000,"admin@admin.com","admin",1));
+        contas.add(new Account("Administrador","000","admin","admin","1"));
     }
 
     @Override
@@ -26,8 +26,8 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     @Override
     public void adicionar(Account conta) {
         String name = conta.getName();
-        int cpf = conta.getCPF();
-        int cardNumber = conta.getCard();
+        String cpf = conta.getCPF();
+        String cardNumber = conta.getCard();
         String email = conta.getEmail();
         String pass = conta.getPass();
 
@@ -46,16 +46,12 @@ public class RepositoryAccounts implements IRepositorioAccounts{
 
     @Override
     public boolean logar(String email, String senha) {
-        boolean logado = false;
-
         for (Account conta : contas) {
             if (conta.getEmail().equals(email) && conta.getPass().equals(senha)) {
-                logado = true;
-                break;
+                return true;
             }
         }
-
-        return logado;
+        return false;
     }
 
     @Override
