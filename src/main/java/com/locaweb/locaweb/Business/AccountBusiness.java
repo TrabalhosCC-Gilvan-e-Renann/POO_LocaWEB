@@ -3,6 +3,7 @@ package com.locaweb.locaweb.Business;
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Repository.IRepositorioAccounts;
 import com.locaweb.locaweb.Repository.RepositoryAccounts;
+import javafx.scene.control.Alert;
 
 public class AccountBusiness {
 
@@ -22,6 +23,10 @@ public class AccountBusiness {
             System.out.println("CONTA JÁ EXISTENTE");
         } else {
             repositorio.adicionar(conta);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Cadastrado com Sucesso!");
+            alert.setTitle("Situação do Cadastro");
+            alert.show();
         }
     }
 
