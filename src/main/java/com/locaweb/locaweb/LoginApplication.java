@@ -8,11 +8,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
+        LocaWEB locaWeb = new LocaWEB();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        Parent root = loader.load();
+
+        LoginController loginController = loader.getController();
+        loginController.setLocaWeb(locaWeb);
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
