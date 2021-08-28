@@ -17,7 +17,12 @@ public class AccountBusiness {
     }
 
     public void adicionar(Account conta) {
-
+        boolean existe = repositorio.existe(conta.getEmail());
+        if(existe){
+            System.out.println("CONTA JÁ EXISTENTE");
+        } else {
+            repositorio.adicionar(conta);
+        }
     }
 
 }

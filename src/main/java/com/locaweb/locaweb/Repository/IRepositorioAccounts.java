@@ -7,6 +7,7 @@ public interface IRepositorioAccounts {
     void remover(Account conta);
     void atualizar(Account conta);
     boolean logar(String email,String senha);
+    boolean existe(String email);
     Account consultar(Account conta);
     Account consultar(String numero);
 }

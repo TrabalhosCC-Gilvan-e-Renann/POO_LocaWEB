@@ -14,8 +14,24 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     }
 
     @Override
-    public void adicionar(Account conta) {
+    public boolean existe(String email){
+        for (Account conta : contas) {
+            if (conta.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    @Override
+    public void adicionar(Account conta) {
+        String name = conta.getName();
+        int cpf = conta.getCPF();
+        int cardNumber = conta.getCard();
+        String email = conta.getEmail();
+        String pass = conta.getPass();
+
+        contas.add(new Account(name,cpf,email,pass,cardNumber));
     }
 
     @Override
@@ -51,4 +67,6 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     public Account consultar(String numero) {
         return null;
     }
+
+
 }

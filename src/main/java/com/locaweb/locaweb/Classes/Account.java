@@ -51,5 +51,17 @@ public class Account extends Client {
     public String getPass() {
         return pass;
     }
+
+    public int getCPF() {
+        return cpf;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCard() {
+        return numberCard;
+    }
     
 }
