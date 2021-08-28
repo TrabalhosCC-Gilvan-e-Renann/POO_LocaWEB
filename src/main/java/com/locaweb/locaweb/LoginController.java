@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.Console;
 import java.util.ArrayList;
 
-public class HomeController {
+public class LoginController {
 
     private LocaWEB locaWeb = new LocaWEB();
 
