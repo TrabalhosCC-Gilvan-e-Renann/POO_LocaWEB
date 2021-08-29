@@ -203,6 +203,11 @@ public class AdminDashController implements Initializable {
     }
 
     @FXML
+    public void BlockUser(ActionEvent event) {
+
+    }
+
+    @FXML
     public void FilterSeries(ActionEvent event) {
         carregarCatalogo(this.locaWeb.getSeries());
     }
