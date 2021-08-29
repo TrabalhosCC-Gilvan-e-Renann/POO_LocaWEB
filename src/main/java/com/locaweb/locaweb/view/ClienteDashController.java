@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,9 @@ public class ClienteDashController implements Initializable {
 
     private LocaWEB locaWeb;
     private boolean isEdit = false;
+
+    @FXML
+    private Button closeBtn;
 
     @FXML
     private ListView<Account> usersList;
@@ -150,5 +154,11 @@ public class ClienteDashController implements Initializable {
         CpfInput.setText("");
         NameInput.setText("");
         CardInput.setText("");
+    }
+
+    @FXML
+    public void CloseClick(ActionEvent event) {
+        Stage stage = (Stage) closeBtn.getScene().getWindow();
+        stage.close();
     }
 }
