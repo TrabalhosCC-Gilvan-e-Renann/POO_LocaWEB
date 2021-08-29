@@ -86,6 +86,7 @@ public class ClienteDashController implements Initializable {
     protected void EditarClick(ActionEvent event) throws IOException {
         isEdit = true;
         FormPane.setOpacity(1);
+        PassInput.setDisable(true);
         EmailInput.setText(usuarioSelecionado.getEmail());
         PassInput.setText(usuarioSelecionado.getPass());
         CpfInput.setText(usuarioSelecionado.getCPF());
