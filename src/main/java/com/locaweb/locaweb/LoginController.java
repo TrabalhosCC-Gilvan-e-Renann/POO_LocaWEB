@@ -6,24 +6,32 @@ import com.locaweb.locaweb.Classes.LocaWEB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.Console;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     private LocaWEB locaWeb;
 
     private Parent root;
     private Stage stage;
+
+    @FXML
+    private ImageView popcornIMG;
 
     @FXML
     private TextField EmailInput;
@@ -90,6 +98,14 @@ public class LoginController {
         }
 
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image image = new Image("popcorn.png");
+        popcornIMG.setImage(image);
+        popcornIMG.setCache(true);
+    }
+
     @FXML
     protected void WantRegisterClick(ActionEvent event) throws IOException {
         if(isLogin){
