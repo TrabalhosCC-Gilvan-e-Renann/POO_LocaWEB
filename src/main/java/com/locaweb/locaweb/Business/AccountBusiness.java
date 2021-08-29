@@ -40,4 +40,8 @@ public class AccountBusiness {
     public void editarConta(Account conta,int userId) {
         repositorio.atualizar(conta,userId);
     }
+
+    public void removerConta(Account conta) {
+        repositorio.remover(conta);
+    }
 }

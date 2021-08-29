@@ -2,6 +2,8 @@ package com.locaweb.locaweb.Classes;
 
 import com.locaweb.locaweb.Business.AccountBusiness;
 
+import java.util.Objects;
+
 public class Account extends Client {
     int id;
     boolean blockedForPay;
@@ -81,6 +83,19 @@ public class Account extends Client {
     }
     public void setCard(String card) {
         this.numberCard = card;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+        Account account = (Account) o;
+        return id == account.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

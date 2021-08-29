@@ -40,7 +40,8 @@ public class RepositoryAccounts implements IRepositorioAccounts{
 
     @Override
     public void remover(Account conta) {
-
+        Account minhaConta = consultar(conta.getId());
+        if (minhaConta!= null)  contas.remove(minhaConta);
     }
 
     @Override

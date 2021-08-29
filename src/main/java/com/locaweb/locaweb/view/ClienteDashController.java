@@ -97,13 +97,23 @@ public class ClienteDashController implements Initializable {
     @FXML
     protected void CadastrarClick(ActionEvent event) throws IOException {
         isEdit = false;
+        ClearInputTextt();
         FormPane.setOpacity(1);
         PassInput.setDisable(false);
     }
 
     @FXML
     protected void RemoverClick(ActionEvent event) throws IOException {
+        locaWeb.removerConta(usuarioSelecionado);
+        carregarUsuários();
+        ClearInputTextt();
+        FormPane.setOpacity(0);
 
+        EditBtn.setOpacity(0);
+        EditBtn.setDisable(true);
+        RemoveBtn.setOpacity(0);
+        RemoveBtn.setDisable(true);
+        FormPane.setOpacity(0);
     }
 
     @FXML
@@ -120,9 +130,6 @@ public class ClienteDashController implements Initializable {
 
             Account newConta = new Account(nome,cpf,email,pass,card);
             locaWeb.editarCliente(newConta,userId);
-            carregarUsuários();
-            ClearInputTextt();
-            FormPane.setOpacity(0);
         }else {
             String email = EmailInput.getText();
             String senha = PassInput.getText();
@@ -131,10 +138,10 @@ public class ClienteDashController implements Initializable {
             String card = CardInput.getText();
 
             locaWeb.adicionarCliente(nome,cpf,email,senha,card);
-            carregarUsuários();
-            ClearInputTextt();
-            FormPane.setOpacity(0);
         }
+        carregarUsuários();
+        ClearInputTextt();
+        FormPane.setOpacity(0);
     }
 
     private void ClearInputTextt(){

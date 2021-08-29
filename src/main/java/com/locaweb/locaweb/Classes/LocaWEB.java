@@ -31,4 +31,8 @@ public class LocaWEB {
     public void editarCliente(Account conta,int userId) {
         contas.editarConta(conta,userId);
     }
+
+    public void removerConta(Account conta) {
+        contas.removerConta(conta);
+    }
 }
