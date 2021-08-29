@@ -12,14 +12,14 @@ public class Account extends Client {
     byte lastPaidMonthly;
     boolean isAdmin;
     /*Para simplificar vamos considerar que a mensalidade de todas as contas devem ser pagas no dia 1*/
-    public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin){
+    public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin,int id){
         super(name, cpf, email,pass, numberCard);
         this.isAdmin = isAdmin;
         this.blockedForADM = false;
-        this.blockedForPay = false;
+        this.blockedForPay = true;
         this.lastPaidMonthly = 0; //Considere que o Computador pegou o mes atual
         this.dateOfCreate = "00/00/0000"; // considere que o Computador pegou a data atual
-        this.id = Integer.parseInt(cpf) + 1; // Considere que o banco de dados, passou o id
+        this.id = id; // Considere que o banco de dados, passou o id
     }
     public int PaidMonthly(){
         byte mes=0;
@@ -39,10 +39,10 @@ public class Account extends Client {
         this.blockedForADM = true;
         return 1;
     }
+
     public boolean accountIsBlocked(){
         byte mes=0;
-        if(mes-this.lastPaidMonthly!=0 || this.blockedForADM){
-            this.blockedForPay = true;
+        if(this.blockedForPay || this.blockedForADM){
             return true;
         }
         return false;
@@ -104,6 +104,6 @@ public class Account extends Client {
 
     @Override
     public String toString() {
-        return getName();
+        return getId()+"-"+getName();
     }
 }

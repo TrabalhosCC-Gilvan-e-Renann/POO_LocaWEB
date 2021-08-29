@@ -12,18 +12,26 @@ public class LocaWEB {
     private AccountBusiness contas;
     private CatalogBusiness catalogo;
 
+    public Account getContaLogada() {
+        return contaLogada;
+    }
+
+    private Account contaLogada;
+
     public LocaWEB(){
+        this.contaLogada = null;
         this.contas = new AccountBusiness(new RepositoryAccounts());
         this.catalogo = new CatalogBusiness(new RepositoryCatalog());
     }
 
     //CONTAS
     public Account logar(String email, String senha) {
+        contaLogada = contas.logar(email,senha);
         return contas.logar(email, senha);
     }
 
     public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard) {
-        Account conta = new Account(name, cpf, email,pass,numberCard,false);
+        Account conta = new Account(name, cpf, email,pass,numberCard,false,0);
         contas.adicionar(conta);
     }
 

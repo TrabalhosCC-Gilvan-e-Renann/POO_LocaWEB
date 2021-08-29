@@ -3,6 +3,7 @@ package com.locaweb.locaweb.view;
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.LocaWEB;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -73,8 +74,6 @@ public class AdminDashController implements Initializable {
 
     public void setLocaWeb(LocaWEB locaWeb) {
         this.locaWeb = locaWeb;
-        carregarUsuários();
-        carregarCatalogo(this.locaWeb.getCatalogo());
     }
 
     public void carregarUsuários(){
@@ -93,6 +92,11 @@ public class AdminDashController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Platform.runLater(() -> {
+            carregarUsuários();
+            carregarCatalogo(this.locaWeb.getCatalogo());
+        });
 
         usersList.getSelectionModel().selectedItemProperty().addListener((observableValue, account, t1) -> {
             usuarioSelecionado = usersList.getSelectionModel().getSelectedItem();
@@ -153,7 +157,7 @@ public class AdminDashController implements Initializable {
             String pass = PassInput.getText();
             String card = CardInput.getText();
 
-            Account newConta = new Account(nome,cpf,email,pass,card,false);
+            Account newConta = new Account(nome,cpf,email,pass,card,false,userId);
             locaWeb.editarCliente(newConta,userId);
         }else {
             String email = EmailInput.getText();
