@@ -1,5 +1,6 @@
 package com.locaweb.locaweb.view;
 
+import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.LocaWEB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,22 +71,29 @@ public class LoginController implements Initializable {
             String email = EmailInput.getText();
             String senha = PassInput.getText();
 
-            boolean logado = locaWeb.logar(email,senha);
+            Account logado = locaWeb.logar(email,senha);
 
-            if (logado){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/cliente-dash-view.fxml"));
-                root = loader.load();
+            if (logado!=null){
+                if(logado.getIsAdmin()){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin-dash-view.fxml"));
+                    root = loader.load();
 
-                ClienteDashController controller = loader.getController();
-                controller.setLocaWeb(locaWeb);
+                    AdminDashController controller = loader.getController();
+                    controller.setLocaWeb(locaWeb);
 
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }else{
+                    System.out.println("NÃO ADMIN");
+                }
+
             }else{
                 System.out.println("erro ao logar");
             }
+
+
         }else{
             String email = EmailInput.getText();
             String senha = PassInput.getText();

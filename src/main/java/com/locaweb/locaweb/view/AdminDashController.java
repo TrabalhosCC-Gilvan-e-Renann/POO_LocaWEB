@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ClienteDashController implements Initializable {
+public class AdminDashController implements Initializable {
 
     private LocaWEB locaWeb;
     private boolean isEdit = false;
@@ -149,7 +149,7 @@ public class ClienteDashController implements Initializable {
             String pass = PassInput.getText();
             String card = CardInput.getText();
 
-            Account newConta = new Account(nome,cpf,email,pass,card);
+            Account newConta = new Account(nome,cpf,email,pass,card,false);
             locaWeb.editarCliente(newConta,userId);
         }else {
             String email = EmailInput.getText();

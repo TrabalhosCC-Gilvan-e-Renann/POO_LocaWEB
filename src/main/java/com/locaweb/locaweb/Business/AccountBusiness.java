@@ -16,7 +16,7 @@ public class AccountBusiness {
         this.repositorio = repositorio;
     }
 
-    public boolean logar(String email,String senha) {
+    public Account logar(String email,String senha) {
         return repositorio.logar(email,senha);
     }
 

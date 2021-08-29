@@ -18,12 +18,12 @@ public class LocaWEB {
     }
 
     //CONTAS
-    public boolean logar(String email, String senha) {
+    public Account logar(String email, String senha) {
         return contas.logar(email, senha);
     }
 
     public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard) {
-        Account conta = new Account(name, cpf, email,pass,numberCard);
+        Account conta = new Account(name, cpf, email,pass,numberCard,false);
         contas.adicionar(conta);
     }
 

@@ -10,9 +10,11 @@ public class Account extends Client {
     boolean blockedForADM;
     String dateOfCreate;
     byte lastPaidMonthly;
+    boolean isAdmin;
     /*Para simplificar vamos considerar que a mensalidade de todas as contas devem ser pagas no dia 1*/
-    public Account(String name, String cpf, String email, String pass, String numberCard){
+    public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin){
         super(name, cpf, email,pass, numberCard);
+        this.isAdmin = isAdmin;
         this.blockedForADM = false;
         this.blockedForPay = false;
         this.lastPaidMonthly = 0; //Considere que o Computador pegou o mes atual
@@ -84,6 +86,8 @@ public class Account extends Client {
     public void setCard(String card) {
         this.numberCard = card;
     }
+
+    public Boolean getIsAdmin() {return isAdmin;}
 
     @Override
     public boolean equals(Object o) {
