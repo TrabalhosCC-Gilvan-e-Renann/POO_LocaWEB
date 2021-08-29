@@ -31,6 +31,9 @@ public class LoginController implements Initializable {
     private Stage stage;
 
     @FXML
+    private Button closeBtn;
+
+    @FXML
     private ImageView popcornIMG;
 
     @FXML
@@ -142,6 +145,12 @@ public class LoginController implements Initializable {
             isLogin = true;
         }
 
+    }
+
+    @FXML
+    public void CloseClick(ActionEvent event) {
+        Stage stage = (Stage) closeBtn.getScene().getWindow();
+        stage.close();
     }
 
     public void setLocaWeb(LocaWEB locaWeb) {
