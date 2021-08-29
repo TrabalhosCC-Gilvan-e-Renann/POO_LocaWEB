@@ -51,6 +51,10 @@ public class Account extends Client {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getPass() {
         return pass;
     }

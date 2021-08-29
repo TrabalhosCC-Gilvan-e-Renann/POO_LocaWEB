@@ -108,7 +108,18 @@ public class ClienteDashController implements Initializable {
     @FXML
     protected void ConfirmClick(ActionEvent event) throws IOException {
         if(isEdit){
-            System.out.println("É EDIT");
+
+            int userId = usuarioSelecionado.getId();
+
+            String email = EmailInput.getText();
+            String cpf = CpfInput.getText();
+            String nome = NameInput.getText();
+            String card = CardInput.getText();
+
+            locaWeb.editarCliente(userId);
+            carregarUsuários();
+            ClearInputTextt();
+            FormPane.setOpacity(0);
         }else {
             String email = EmailInput.getText();
             String senha = PassInput.getText();
@@ -120,7 +131,6 @@ public class ClienteDashController implements Initializable {
             carregarUsuários();
             ClearInputTextt();
             FormPane.setOpacity(0);
-
         }
     }
 

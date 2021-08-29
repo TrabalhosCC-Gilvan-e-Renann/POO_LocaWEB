@@ -44,8 +44,28 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     }
 
     @Override
-    public void atualizar(Account conta) {
+    public void atualizar(int userId) {
 
+        for (Account conta : contas) {
+            if (conta.getId() == userId) {
+                extracted(conta);
+                break;
+            }
+        }
+
+
+    }
+
+    private void extracted(Account conta) {
+        String name = conta.getName();
+        String cpf = conta.getCPF();
+        String cardNumber = conta.getCard();
+        String email = conta.getEmail();
+
+        conta.setCard(cardNumber);
+        conta.setCPF(cpf);
+        conta.setEmail(email);
+        conta.setName(name);
     }
 
     @Override

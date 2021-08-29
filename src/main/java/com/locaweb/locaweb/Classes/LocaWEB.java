@@ -28,4 +28,7 @@ public class LocaWEB {
         return contas.listarContas();
     }
 
+    public void editarCliente(int userId) {
+        contas.editarConta(userId);
+    }
 }
