@@ -104,6 +104,6 @@ public class Account extends Client {
 
     @Override
     public String toString() {
-        return getId()+"-"+getName();
+        return getName();
     }
 }
