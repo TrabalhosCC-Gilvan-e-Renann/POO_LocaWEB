@@ -86,7 +86,16 @@ public class LoginController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 }else{
-                    System.out.println("NÃO ADMIN");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/client-dash-view.fxml"));
+                    root = loader.load();
+
+                    ClientDashController controller = loader.getController();
+                    controller.setLocaWeb(locaWeb);
+
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 }
 
             }else{
