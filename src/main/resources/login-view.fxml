@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="726.0" prefWidth="1035.0" style="-fx-background-color: #0e111a;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locaweb.locaweb.LoginController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="726.0" prefWidth="1035.0" style="-fx-background-color: #0e111a;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locaweb.locaweb.view.LoginController">
     <AnchorPane prefHeight="726.0" prefWidth="1053.0" VBox.vgrow="ALWAYS">
     <Pane layoutX="605.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="726.0" prefWidth="430.0" style="-fx-background-color: #2fa878;">
          <children>
@@ -93,7 +93,7 @@
          </children></Pane>
       <ImageView fx:id="popcornIMG" fitHeight="414.0" fitWidth="380.0" layoutX="103.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../java/com/locaweb/locaweb/img/popcorn.png" />
+            <Image url="@popcorn.png" />
          </image>
       </ImageView>
     </AnchorPane>

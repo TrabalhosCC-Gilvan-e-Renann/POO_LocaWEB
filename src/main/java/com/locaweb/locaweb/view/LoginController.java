@@ -1,7 +1,5 @@
-package com.locaweb.locaweb;
+package com.locaweb.locaweb.view;
 
-import com.locaweb.locaweb.Business.AccountBusiness;
-import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.LocaWEB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.Console;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -77,10 +73,10 @@ public class LoginController implements Initializable {
             boolean logado = locaWeb.logar(email,senha);
 
             if (logado){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente-dash-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/cliente-dash-view.fxml"));
                 root = loader.load();
 
-                ClienteDashView controller = loader.getController();
+                ClienteDashController controller = loader.getController();
                 controller.setLocaWeb(locaWeb);
 
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

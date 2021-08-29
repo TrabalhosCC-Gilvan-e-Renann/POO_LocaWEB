@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.locaweb.locaweb/com.locaweb.locaweb.LoginApplication</mainClass>
+                            <mainClass>com.locaweb.locaweb/com.locaweb.locaweb.Application</mainClass>
                         </configuration>
                     </execution>
                 </executions>

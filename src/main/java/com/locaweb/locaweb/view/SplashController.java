@@ -1,4 +1,4 @@
-package com.locaweb.locaweb;
+package com.locaweb.locaweb.view;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,18 +9,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
-public class Splash implements Initializable {
+public class SplashController implements Initializable {
 
     private LocaWEB locaWeb;
 
@@ -51,7 +48,7 @@ public class Splash implements Initializable {
                     @Override
                     public void run() {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/login-view.fxml"));
                             Parent root = loader.load();
                             Stage stage = (Stage)apane.getScene().getWindow();
 

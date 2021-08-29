@@ -5,4 +5,6 @@ module com.locaweb.locaweb {
 
     opens com.locaweb.locaweb to javafx.fxml;
     exports com.locaweb.locaweb;
+    exports com.locaweb.locaweb.view;
+    opens com.locaweb.locaweb.view to javafx.fxml;
 }

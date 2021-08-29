@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="apane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2fa878;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locaweb.locaweb.Splash">
+<AnchorPane id="AnchorPane" fx:id="apane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2fa878;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locaweb.locaweb.view.SplashController">
     <children>
         <Label alignment="CENTER" layoutY="24.0" prefHeight="57.0" prefWidth="624.0" text="LocaWeb" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -23,7 +23,7 @@
       </Label>
       <ImageView fx:id="imageView" fitHeight="263.0" fitWidth="324.0" layoutX="181.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
           <image>
-              <Image url="@../../../../java/com/locaweb/locaweb/img/documentary.png" />
+              <Image url="@documentary.png" />
           </image>
       </ImageView>
     </children>

@@ -1,4 +1,4 @@
-package com.locaweb.locaweb;
+package com.locaweb.locaweb.view;
 
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.LocaWEB;
@@ -13,10 +13,9 @@ import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class ClienteDashView implements Initializable {
+public class ClienteDashController implements Initializable {
 
     private LocaWEB locaWeb;
 
