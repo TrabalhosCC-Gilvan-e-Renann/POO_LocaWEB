@@ -8,9 +8,9 @@ public class Series extends ItemCatalog{
     int seasonWatched;
     int episodeWatched;
     int season;
-    ArrayList<Integer> episodes;
+    int episodes;
     
-    Series(String name, int id, int year, float duration, String genre, int season, ArrayList<Integer> episodes){
+    public Series(String name, int id, int year, float duration, String genre, int season, int episodes){
         super(name, id, year, genre);
         this.duration = duration;
         this.timeWatched = 0;
@@ -19,7 +19,7 @@ public class Series extends ItemCatalog{
         this.episodes = episodes;
         this.season = season;
     }
-    public void update(String name, int year, float duration, String genre, int season, ArrayList<Integer> episodes){
+    public void update(String name, int year, float duration, String genre, int season, int episodes){
         super.update(name, year, genre);
         this.duration = duration;
         this.episodes = episodes;

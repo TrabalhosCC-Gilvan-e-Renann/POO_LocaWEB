@@ -3,6 +3,7 @@ package com.locaweb.locaweb.Repository;
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.Movie;
+import com.locaweb.locaweb.Classes.Series;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class RepositoryCatalog implements IRepositoryCatalog{
     public RepositoryCatalog(){
         catalogo = new ArrayList<ItemCatalog>();
         catalogo.add(new Movie("Aladdin",1,2019,2.08f,"Música/Infantil"));
+        catalogo.add(new Series("The Witcher",2,2019,1.08f,"Música/Infantil",1,8));
     }
 
 
