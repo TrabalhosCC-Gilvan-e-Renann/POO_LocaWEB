@@ -70,7 +70,7 @@ public class ClienteDashController implements Initializable {
     public void setLocaWeb(LocaWEB locaWeb) {
         this.locaWeb = locaWeb;
         carregarUsuários();
-        carregarCatalogo();
+        carregarCatalogo(this.locaWeb.getCatalogo());
     }
 
     public void carregarUsuários(){
@@ -80,8 +80,8 @@ public class ClienteDashController implements Initializable {
         usersList.setItems(obsUsers);
     }
 
-    public void carregarCatalogo(){
-        ArrayList<ItemCatalog> catalogo = this.locaWeb.getCatalogo();
+    public void carregarCatalogo(ArrayList<ItemCatalog> getCatalago){
+        ArrayList<ItemCatalog> catalogo = getCatalago;
         System.out.println(catalogo);
         obsCatalogo = FXCollections.observableArrayList(catalogo);
         catalogList.setItems(obsCatalogo);
@@ -177,5 +177,20 @@ public class ClienteDashController implements Initializable {
     public void CloseClick(ActionEvent event) {
         Stage stage = (Stage) closeBtn.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void FilterAll(ActionEvent event) {
+        carregarCatalogo(this.locaWeb.getCatalogo());
+    }
+
+    @FXML
+    public void FilterSeries(ActionEvent event) {
+        carregarCatalogo(this.locaWeb.getSeries());
+    }
+
+    @FXML
+    public void FilterMovies(ActionEvent event) {
+        carregarCatalogo(this.locaWeb.getFilmes());
     }
 }

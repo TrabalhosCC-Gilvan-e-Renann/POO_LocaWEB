@@ -46,6 +46,14 @@ public class LocaWEB {
         return catalogo.listarCatalogo();
     }
 
+    public ArrayList<ItemCatalog> getFilmes() {
+        return catalogo.listarFilmes();
+    }
+
+    public ArrayList<ItemCatalog> getSeries() {
+        return catalogo.listarSeries();
+    }
+
 }
 
 
