@@ -3,17 +3,49 @@ package com.locaweb.locaweb.Classes;
 import java.util.ArrayList;
 
 public class Catalog {
+	public ArrayList<ItemCatalog> getCatalog() {
+        return itens;
+    }
     ArrayList<ItemCatalog> itens;
 	
 	Catalog(){
             itens = new ArrayList<ItemCatalog>();
 	}
-	public Integer buscar(int name){
-            int id=-1;
-            return id;
+	public Integer searchByName(String name){
+            int pos=-1;
+			int n = this.itens.size();
+    		for (i=0; i<n; i++) {
+				if(name==this.itens.get(i).getName()){
+					pos = i;
+					System.out.printf("Item Encintrado");
+				}
+      		}
+        	System.out.printf("Busca Encerrada");    
+			return id;
 	}
-	public void inserir(Object Item){
+	public Integer searchById(int id){
+            int pos=-1;
+			int n = this.itens.size();
+    		for (i=0; i<n; i++) {
+				if(id==this.itens.get(i).getId()){
+					pos=i;
+					System.out.printf("Item Encintrado");
+				}
+      		}
+        	System.out.printf("Busca Encerrada");    
+			return pos;
 	}
-	public void deletar(int id){        
+	public void include(Object Item){
+		this.itens.add(Item);
+	}
+	public Boolean delete(int id){
+		if(searchById(id) == -1) {
+			System.out.printf("Item não Existe");
+			return false;
+		}else{
+			this.itens.remove(index);
+			System.out.printf("Bye Bye Item");
+			return true;
+		}
 	}
 }
