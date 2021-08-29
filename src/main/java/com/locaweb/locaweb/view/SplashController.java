@@ -29,7 +29,7 @@ public class SplashController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Image image = new Image("documentary.png");
+        Image image = new Image("/documentary.png");
         imageView.setImage(image);
         imageView.setCache(true);
 
