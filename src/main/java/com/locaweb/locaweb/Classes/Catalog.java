@@ -1,4 +1,4 @@
-ackage com.locaweb.locaweb.Classes;
+package com.locaweb.locaweb.Classes;
 
 import java.util.ArrayList;
 
@@ -14,19 +14,19 @@ public class Catalog {
 	public Integer searchByName(String name){
             int pos=-1;
 	    int n = this.itens.size();
-    	    for (i=0; i<n; i++) {
+    	    for (int i=0; i<n; i++) {
 		if(name==this.itens.get(i).getName()){
 			pos = i;
 			System.out.printf("Item Encintrado");
 		}
             }
             System.out.printf("Busca Encerrada");    
-            return id;
+            return itens.get(pos).getId();
 	}
 	public Integer searchById(int id){
             int pos=-1;
 	    int n = this.itens.size();
-            for (i=0; i<n; i++) {
+            for (int i=0; i<n; i++) {
 		if(id==this.itens.get(i).getId()){
 			pos=i;
 			System.out.printf("Item Encintrado");
@@ -35,7 +35,7 @@ public class Catalog {
             System.out.printf("Busca Encerrada");    
             return pos;
 	}
-	public void include(Object Item){
+	public void include(ItemCatalog Item){
             this.itens.add(Item);
 	}
 	public Boolean delete(int id){
@@ -59,6 +59,5 @@ public class Catalog {
             	System.out.printf("O Item mudou");
             	return true;
             }
-            return false;
 	}
 }
