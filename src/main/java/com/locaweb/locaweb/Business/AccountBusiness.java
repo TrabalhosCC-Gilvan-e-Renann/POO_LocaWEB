@@ -37,7 +37,7 @@ public class AccountBusiness {
         return repositorio.getContas();
     }
 
-    public void editarConta(int userId) {
-        repositorio.atualizar(userId);
+    public void editarConta(Account conta,int userId) {
+        repositorio.atualizar(conta,userId);
     }
 }

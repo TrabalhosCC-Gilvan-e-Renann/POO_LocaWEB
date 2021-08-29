@@ -73,7 +73,7 @@ public class ClienteDashController implements Initializable {
 
         usersList.getSelectionModel().selectedItemProperty().addListener((observableValue, account, t1) -> {
             usuarioSelecionado = usersList.getSelectionModel().getSelectedItem();
-            userNmame.setText(usuarioSelecionado.getName());
+            if(usuarioSelecionado!=null) userNmame.setText(usuarioSelecionado.getName()); else userNmame.setText("");
             EditBtn.setOpacity(1);
             EditBtn.setDisable(false);
             RemoveBtn.setOpacity(1);
@@ -114,9 +114,11 @@ public class ClienteDashController implements Initializable {
             String email = EmailInput.getText();
             String cpf = CpfInput.getText();
             String nome = NameInput.getText();
+            String pass = PassInput.getText();
             String card = CardInput.getText();
 
-            locaWeb.editarCliente(userId);
+            Account newConta = new Account(nome,cpf,email,pass,card);
+            locaWeb.editarCliente(newConta,userId);
             carregarUsuários();
             ClearInputTextt();
             FormPane.setOpacity(0);

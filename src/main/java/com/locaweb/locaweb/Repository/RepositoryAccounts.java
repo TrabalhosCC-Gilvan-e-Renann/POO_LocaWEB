@@ -44,28 +44,21 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     }
 
     @Override
-    public void atualizar(int userId) {
-
-        for (Account conta : contas) {
-            if (conta.getId() == userId) {
-                extracted(conta);
-                break;
-            }
-        }
-
-
+    public void atualizar(Account newConta,int userId) {
+        Account conta = consultar(userId);
+        if (conta!= null) editarDadosConta(newConta,conta);
     }
 
-    private void extracted(Account conta) {
-        String name = conta.getName();
-        String cpf = conta.getCPF();
-        String cardNumber = conta.getCard();
-        String email = conta.getEmail();
+    private void editarDadosConta(Account nova,Account atual) {
+        String name = nova.getName();
+        String cpf = nova.getCPF();
+        String cardNumber = nova.getCard();
+        String email = nova.getEmail();
 
-        conta.setCard(cardNumber);
-        conta.setCPF(cpf);
-        conta.setEmail(email);
-        conta.setName(name);
+        atual.setCard(cardNumber);
+        atual.setCPF(cpf);
+        atual.setEmail(email);
+        atual.setName(name);
     }
 
     @Override
@@ -84,7 +77,10 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     }
 
     @Override
-    public Account consultar(String numero) {
+    public Account consultar(int numero) {
+
+        for (Account conta : contas) if (conta.getId() == numero) return conta;
+
         return null;
     }
 
