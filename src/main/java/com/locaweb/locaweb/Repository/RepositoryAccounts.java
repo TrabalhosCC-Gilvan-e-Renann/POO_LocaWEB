@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class RepositoryAccounts implements IRepositorioAccounts{
 
+    public ArrayList<Account> getContas() {
+        return contas;
+    }
+
     ArrayList<Account> contas;
 
     public RepositoryAccounts(){

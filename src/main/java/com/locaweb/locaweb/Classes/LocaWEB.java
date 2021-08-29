@@ -3,6 +3,8 @@ package com.locaweb.locaweb.Classes;
 import com.locaweb.locaweb.Business.AccountBusiness;
 import com.locaweb.locaweb.Repository.RepositoryAccounts;
 
+import java.util.ArrayList;
+
 public class LocaWEB {
 
     private AccountBusiness contas;
@@ -22,8 +24,8 @@ public class LocaWEB {
     }
 
 
-    public AccountBusiness getContas() {
-        return contas;
+    public ArrayList<Account> getContas() {
+        return contas.listarContas();
     }
 
 }

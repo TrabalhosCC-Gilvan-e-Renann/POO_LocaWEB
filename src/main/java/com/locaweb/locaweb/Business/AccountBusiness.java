@@ -5,11 +5,14 @@ import com.locaweb.locaweb.Repository.IRepositorioAccounts;
 import com.locaweb.locaweb.Repository.RepositoryAccounts;
 import javafx.scene.control.Alert;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class AccountBusiness {
 
-    private IRepositorioAccounts repositorio;
+    private RepositoryAccounts repositorio;
 
-    public AccountBusiness(IRepositorioAccounts repositorio) {
+    public AccountBusiness(RepositoryAccounts repositorio) {
         this.repositorio = repositorio;
     }
 
@@ -28,6 +31,10 @@ public class AccountBusiness {
             alert.setTitle("Situação do Cadastro");
             alert.show();
         }
+    }
+
+    public ArrayList<Account> listarContas(){
+        return repositorio.getContas();
     }
 
 }

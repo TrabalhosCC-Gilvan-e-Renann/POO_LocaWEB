@@ -63,5 +63,9 @@ public class Account extends Client {
     public String getCard() {
         return numberCard;
     }
-    
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

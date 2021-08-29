@@ -68,6 +68,10 @@ public class LoginController {
             if (logado){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente-dash-view.fxml"));
                 root = loader.load();
+
+                ClienteDashView controller = loader.getController();
+                controller.setLocaWeb(locaWeb);
+
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
