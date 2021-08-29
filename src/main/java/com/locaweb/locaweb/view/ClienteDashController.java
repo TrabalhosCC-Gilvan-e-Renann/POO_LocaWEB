@@ -1,6 +1,7 @@
 package com.locaweb.locaweb.view;
 
 import com.locaweb.locaweb.Classes.Account;
+import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.LocaWEB;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,6 +29,9 @@ public class ClienteDashController implements Initializable {
 
     @FXML
     private ListView<Account> usersList;
+
+    @FXML
+    private ListView<ItemCatalog> catalogList;
 
     @FXML
     private Label userNmame;
@@ -60,9 +64,13 @@ public class ClienteDashController implements Initializable {
     private ObservableList<Account> obsUsers;
     private Account usuarioSelecionado;
 
+    private ObservableList<ItemCatalog> obsCatalogo;
+    private ItemCatalog catalogoSelecionado;
+
     public void setLocaWeb(LocaWEB locaWeb) {
         this.locaWeb = locaWeb;
         carregarUsuários();
+        carregarCatalogo();
     }
 
     public void carregarUsuários(){
@@ -70,6 +78,13 @@ public class ClienteDashController implements Initializable {
         System.out.println(contas);
         obsUsers = FXCollections.observableArrayList(contas);
         usersList.setItems(obsUsers);
+    }
+
+    public void carregarCatalogo(){
+        ArrayList<ItemCatalog> catalogo = this.locaWeb.getCatalogo();
+        System.out.println(catalogo);
+        obsCatalogo = FXCollections.observableArrayList(catalogo);
+        catalogList.setItems(obsCatalogo);
     }
 
     @Override
@@ -84,6 +99,8 @@ public class ClienteDashController implements Initializable {
             RemoveBtn.setDisable(false);
             FormPane.setOpacity(0);
         });
+
+
     }
 
     @FXML

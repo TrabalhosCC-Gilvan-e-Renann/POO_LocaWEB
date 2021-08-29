@@ -6,13 +6,13 @@ public class Movie extends ItemCatalog{
     String nameContinuation;
     float timeWatch;
     
-    Movie(String name, int id, int year, float duration, String genre){
+    public Movie(String name, int id, int year, float duration, String genre){
         super(name, id, year, genre);
         this.duration = duration;
         this.continuation = false;
         this.timeWatch = 0;
     }
-    Movie(String name, int id, int year, float duration, String genre, String nameContinuation){
+    public Movie(String name, int id, int year, float duration, String genre, String nameContinuation){
         super(name, id, year, genre);
         this.duration = duration;
         this.continuation = true;

@@ -1,6 +1,22 @@
 package com.locaweb.locaweb.Classes;
 
 public class ItemCatalog {
+    public int getId() {
+        return id;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     String name;
     int id;
     int year;
@@ -20,5 +36,9 @@ public class ItemCatalog {
         this.year = year;
         this.genre = genre;
     }
-   
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
