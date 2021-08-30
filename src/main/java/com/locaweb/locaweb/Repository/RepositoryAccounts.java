@@ -14,7 +14,7 @@ public class RepositoryAccounts implements IRepositorioAccounts{
 
     public RepositoryAccounts(){
         contas = new ArrayList<Account>();
-        contas.add(new Account("Administrador","000","admin","admin","1",true,1));
+        contas.add(new Account("Administrador","000","admin","admin","1",true,1,false));
     }
 
     @Override
@@ -34,7 +34,8 @@ public class RepositoryAccounts implements IRepositorioAccounts{
         String cardNumber = conta.getCard();
         String email = conta.getEmail();
         String pass = conta.getPass();
-        contas.add(new Account(name,cpf,email,pass,cardNumber,false,contas.size()+1));
+        boolean blocked = conta.isBlockedForADM();
+        contas.add(new Account(name,cpf,email,pass,cardNumber,false,contas.size()+1,blocked));
     }
 
     @Override
@@ -55,12 +56,14 @@ public class RepositoryAccounts implements IRepositorioAccounts{
         String pass = nova.getPass();
         String cardNumber = nova.getCard();
         String email = nova.getEmail();
+        boolean blocked = nova.isBlockedForADM();
 
         atual.setCard(cardNumber);
         atual.setCPF(cpf);
         atual.setPass(pass);
         atual.setEmail(email);
         atual.setName(name);
+        atual.setBlockedForADM(blocked);
     }
 
     @Override

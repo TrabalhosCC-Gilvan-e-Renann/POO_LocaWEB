@@ -29,7 +29,7 @@
                               <Font size="29.0" />
                            </font>
                         </Button>
-                        <AnchorPane fx:id="FormPane" layoutX="466.0" layoutY="223.0" opacity="0.0" prefHeight="460.0" prefWidth="601.0">
+                        <AnchorPane fx:id="FormPane" layoutX="466.0" layoutY="223.0" prefHeight="460.0" prefWidth="601.0">
                            <children>
                                <TextField fx:id="NameInput" prefHeight="54.0" prefWidth="628.0" promptText="Nome Completo" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                    <font>
@@ -76,10 +76,18 @@
                                     <Font size="29.0" />
                                  </font>
                               </Button>
-                              <RadioButton fx:id="blockUsedBtn" contentDisplay="CENTER" layoutX="359.0" layoutY="239.0" mnemonicParsing="false" onAction="#BlockUser" prefHeight="56.0" prefWidth="223.0" text="Usuário Bloqueado" textFill="WHITE">
+                              <RadioButton fx:id="blockUserBtn" contentDisplay="CENTER" layoutX="349.0" layoutY="242.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="223.0" text="Usuário Bloqueado" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
-                                 </font></RadioButton>
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="BlockedUser" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="unblockUserBtn" contentDisplay="CENTER" layoutX="57.0" layoutY="242.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="257.0" selected="true" text="Usuário Desbloqueado" textFill="WHITE" toggleGroup="$BlockedUser">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </RadioButton>
                            </children>
                         </AnchorPane>
                         <Button fx:id="InsereBtn" layoutX="695.0" layoutY="113.0" onAction="#CadastrarClick" prefHeight="54.0" prefWidth="186.0" style="-fx-background-color: #828282; -fx-background-radius: 100;" text="Cadastrar" textFill="WHITE">

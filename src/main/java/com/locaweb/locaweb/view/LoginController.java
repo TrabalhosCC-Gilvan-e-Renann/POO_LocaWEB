@@ -109,7 +109,7 @@ public class LoginController implements Initializable {
             String nome = NameInput.getText();
             String card = CardInput.getText();
 
-            locaWeb.adicionarCliente(nome,cpf,email,senha,card);
+            locaWeb.adicionarCliente(nome,cpf,email,senha,card,false);
         }
 
     }

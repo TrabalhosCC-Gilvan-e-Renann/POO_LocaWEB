@@ -33,6 +33,14 @@ public class AdminDashController implements Initializable {
     private Button closeBtn;
 
     @FXML
+    private ToggleGroup BlockedUser;
+
+    @FXML
+    private RadioButton blockUserBtn;
+    @FXML
+    private RadioButton unblockUserBtn;
+
+    @FXML
     private ListView<Account> usersList;
 
     @FXML
@@ -106,6 +114,11 @@ public class AdminDashController implements Initializable {
             RemoveBtn.setOpacity(1);
             RemoveBtn.setDisable(false);
             FormPane.setOpacity(0);
+            if(usuarioSelecionado!=null){
+                if(usuarioSelecionado.isBlockedForADM())  blockUserBtn.setSelected(true);
+                else unblockUserBtn.setSelected(true);
+            }
+
         });
 
 
@@ -151,26 +164,20 @@ public class AdminDashController implements Initializable {
 
     @FXML
     protected void ConfirmClick(ActionEvent event) throws IOException {
+        String email = EmailInput.getText();
+        String senha = PassInput.getText();
+        String cpf = CpfInput.getText();
+        String nome = NameInput.getText();
+        String card = CardInput.getText();
+        boolean blocked = BlockedUser.getSelectedToggle() == blockUserBtn;
+        System.out.println("BLOCKED"+blocked);
+
         if(isEdit){
-
             int userId = usuarioSelecionado.getId();
-
-            String email = EmailInput.getText();
-            String cpf = CpfInput.getText();
-            String nome = NameInput.getText();
-            String pass = PassInput.getText();
-            String card = CardInput.getText();
-
-            Account newConta = new Account(nome,cpf,email,pass,card,false,userId);
+            Account newConta = new Account(nome,cpf,email,senha,card,false,userId,blocked);
             locaWeb.editarCliente(newConta,userId);
         }else {
-            String email = EmailInput.getText();
-            String senha = PassInput.getText();
-            String cpf = CpfInput.getText();
-            String nome = NameInput.getText();
-            String card = CardInput.getText();
-
-            locaWeb.adicionarCliente(nome,cpf,email,senha,card);
+            locaWeb.adicionarCliente(nome,cpf,email,senha,card,blocked);
         }
         carregarUsuários();
         ClearInputTextt();
@@ -229,10 +236,6 @@ public class AdminDashController implements Initializable {
 
     }
 
-    @FXML
-    public void BlockUser(ActionEvent event) {
-
-    }
 
     @FXML
     public void FilterSeries(ActionEvent event) {

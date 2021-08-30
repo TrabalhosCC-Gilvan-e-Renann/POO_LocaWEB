@@ -39,7 +39,12 @@ public class ClientDashController implements Initializable {
     private Label mySeasons;
 
     @FXML
+    private Label blockLabel;
+
+    @FXML
     private Button closeBtn;
+    @FXML
+    private Button ProfileBtn;
     @FXML
     private Button catalogBtn;
     @FXML
@@ -172,6 +177,11 @@ public class ClientDashController implements Initializable {
             olaLabel.setText("Olá, "+locaWeb.getContaLogada().getName());
             updateButtons();
             if(locaWeb.getContaLogada().accountIsBlocked()){
+                if(locaWeb.getContaLogada().isBlockedForADM()){
+                    blockLabel.setText("É necessário entrar em contato com o Administrador para desbloquear a sua conta!");
+                } else if(locaWeb.getContaLogada().isBlockedForPay()) {
+                    blockLabel.setText("É necessário pagar a mensalidade para desbloquear a sua conta!");
+                }
                 contaBloqueada.setOpacity(1);
                 meuPerfil.setOpacity(0);
                 pagarConta.setOpacity(0);
@@ -209,7 +219,10 @@ public class ClientDashController implements Initializable {
 
     private void updateButtons(){
         catalogBtn.setDisable(locaWeb.getContaLogada().accountIsBlocked());
-        payBtn.setDisable(!locaWeb.getContaLogada().accountIsBlocked());
+        if(locaWeb.getContaLogada().isBlockedForADM()) payBtn.setDisable(true);
+        else payBtn.setDisable(!locaWeb.getContaLogada().isBlockedForPay());
+
+        ProfileBtn.setDisable(locaWeb.getContaLogada().isBlockedForADM());
     }
 
 
@@ -220,8 +233,9 @@ public class ClientDashController implements Initializable {
         String nome = NameInput.getText();
         String pass = PassInput.getText();
         String card = CardInput.getText();
+        boolean blocked = locaWeb.getContaLogada().isBlockedForADM();
 
-        Account newConta = new Account(nome,cpf,email,pass,card,false,locaWeb.getContaLogada().getId());
+        Account newConta = new Account(nome,cpf,email,pass,card,false,locaWeb.getContaLogada().getId(),blocked);
         locaWeb.editarCliente(newConta,locaWeb.getContaLogada().getId());
         olaLabel.setText("Olá, "+locaWeb.getContaLogada().getName());
         meuPerfil.setDisable(true);

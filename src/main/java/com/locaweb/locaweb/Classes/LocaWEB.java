@@ -30,8 +30,8 @@ public class LocaWEB {
         return contas.logar(email, senha);
     }
 
-    public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard) {
-        Account conta = new Account(name, cpf, email,pass,numberCard,false,0);
+    public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard,boolean blocked) {
+        Account conta = new Account(name, cpf, email,pass,numberCard,false,0,blocked);
         contas.adicionar(conta);
     }
 
