@@ -27,6 +27,32 @@
             <Font size="32.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="pagarConta" layoutX="23.0" layoutY="164.0" prefHeight="606.0" prefWidth="1081.0" />
+      <AnchorPane fx:id="pagarConta" layoutX="214.0" layoutY="288.0" prefHeight="379.0" prefWidth="691.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 25; -fx-background-radius: 25;">
+         <children>
+            <Label fx:id="cardLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="238.0" prefWidth="653.0" text="Pagar a Mensalidade usando o cartão 2111111111111111111 11 ?" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Button fx:id="yesBtn" layoutX="150.0" layoutY="273.0" mnemonicParsing="false" onAction="#Pay" prefHeight="62.0" prefWidth="182.0" style="-fx-background-color: green; -fx-background-radius: 25;" text="Sim" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+            <Button fx:id="noBtn" layoutX="360.0" layoutY="273.0" mnemonicParsing="false" onAction="#DenyPay" prefHeight="62.0" prefWidth="182.0" style="-fx-background-color: red; -fx-background-radius: 25;" text="Não" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <AnchorPane fx:id="contaBloqueada" disable="true" layoutX="33.0" layoutY="174.0" opacity="0.0" prefHeight="606.0" prefWidth="1081.0" visible="false">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="218.0" prefHeight="170.0" prefWidth="681.0" text="É necessário pagar a mensalidade para desbloquear a sua conta!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
