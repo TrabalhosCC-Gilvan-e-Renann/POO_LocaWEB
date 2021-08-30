@@ -140,7 +140,7 @@
                          </Button>
                          <AnchorPane fx:id="FormPaneItem" layoutX="466.0" layoutY="223.0" prefHeight="460.0" prefWidth="601.0">
                              <children>
-                                 <TextField fx:id="TitleInput" layoutX="3.0" layoutY="33.0" prefHeight="54.0" prefWidth="628.0" promptText="Título" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <TextField fx:id="TitleInput" layoutX="3.0" layoutY="61.0" prefHeight="54.0" prefWidth="628.0" promptText="Título" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                      <font>
                                          <Font size="20.0" />
                                      </font>
@@ -148,7 +148,7 @@
                                          <Insets left="20.0" />
                                      </padding>
                                  </TextField>
-                                 <TextField fx:id="YearInput" layoutY="107.0" prefHeight="54.0" prefWidth="214.0" promptText="Ano de lançamento" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <TextField fx:id="YearInput" layoutY="135.0" prefHeight="54.0" prefWidth="214.0" promptText="Ano de lançamento" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                      <font>
                                          <Font size="20.0" />
                                      </font>
@@ -156,7 +156,7 @@
                                          <Insets left="20.0" />
                                      </padding>
                                  </TextField>
-                                 <TextField fx:id="GenreInput" layoutX="227.0" layoutY="107.0" prefHeight="54.0" prefWidth="405.0" promptText="Gênero" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <TextField fx:id="GenreInput" layoutX="227.0" layoutY="135.0" prefHeight="54.0" prefWidth="405.0" promptText="Gênero" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                      <font>
                                          <Font size="20.0" />
                                      </font>
@@ -164,7 +164,7 @@
                                          <Insets left="20.0" />
                                      </padding>
                                  </TextField>
-                                 <TextField fx:id="TimeInput" layoutX="3.0" layoutY="185.0" prefHeight="54.0" prefWidth="214.0" promptText="Duração" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <TextField fx:id="TimeInput" layoutX="3.0" layoutY="213.0" prefHeight="54.0" prefWidth="214.0" promptText="Duração" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                      <font>
                                          <Font size="20.0" />
                                      </font>
@@ -172,12 +172,41 @@
                                          <Insets left="20.0" />
                                      </padding>
                                  </TextField>
-                                 <Button fx:id="ConfirmItemBtn" layoutX="99.0" layoutY="348.0" onAction="#ConfirmItem" prefHeight="54.0" prefWidth="433.0" style="-fx-background-color: #2fa878; -fx-background-radius: 100;" text="Confirmar" textFill="WHITE">
+                                 <Button fx:id="ConfirmItemBtn" layoutX="99.0" layoutY="385.0" onAction="#ConfirmItem" prefHeight="54.0" prefWidth="433.0" style="-fx-background-color: #2fa878; -fx-background-radius: 100;" text="Confirmar" textFill="WHITE">
                                      <font>
                                          <Font size="29.0" />
                                      </font>
                                  </Button>
-                              <TextField fx:id="Continuation" layoutX="227.0" layoutY="185.0" prefHeight="54.0" prefWidth="405.0" promptText="Continuação" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                              <TextField fx:id="Continuation" layoutX="227.0" layoutY="213.0" prefHeight="54.0" prefWidth="405.0" promptText="Continuação" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </TextField>
+                              <RadioButton fx:id="filmeBtn" contentDisplay="CENTER" layoutX="177.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="119.0" text="Filme" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Item" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="SerieBtn" contentDisplay="CENTER" layoutX="349.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Serie" textFill="WHITE" toggleGroup="$Item">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </RadioButton>
+                              <TextField fx:id="Season" layoutX="20.0" layoutY="285.0" prefHeight="54.0" prefWidth="292.0" promptText="Temporadas" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField fx:id="Episode" layoutX="319.0" layoutY="285.0" prefHeight="54.0" prefWidth="292.0" promptText="Episódios" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

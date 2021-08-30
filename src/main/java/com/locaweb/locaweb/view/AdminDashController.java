@@ -33,11 +33,18 @@ public class AdminDashController implements Initializable {
 
     @FXML
     private ToggleGroup BlockedUser;
+    @FXML
+    private ToggleGroup Item;
 
     @FXML
     private RadioButton blockUserBtn;
     @FXML
     private RadioButton unblockUserBtn;
+
+    @FXML
+    private RadioButton SerieBtn;
+    @FXML
+    private RadioButton filmeBtn;
 
     @FXML
     private ListView<Account> usersList;
@@ -75,6 +82,10 @@ public class AdminDashController implements Initializable {
 
     @FXML
     private TextField Continuation;
+    @FXML
+    private TextField Season;
+    @FXML
+    private TextField Episode;
 
     @FXML
     private TextField GenreInput;
@@ -200,23 +211,40 @@ public class AdminDashController implements Initializable {
         String genre = GenreInput.getText();
         String year = YearInput.getText();
         String time = TimeInput.getText();
-        String continuation = Continuation.getText();
 
         if(isEditItem){
             int catalogoId = catalogoSelecionado.getId();
-            Movie newItem;
-            if(continuation.length()>0) {
-                newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
-            }else newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre);
-
-            locaWeb.editarCatalago(newItem);
+            if(Item.getSelectedToggle() == filmeBtn){
+                String continuation = Continuation.getText();
+                Movie newItem;
+                if(continuation.length()>0) {
+                    newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
+                }else newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre);
+                locaWeb.editarCatalago(newItem);
+            }else if(Item.getSelectedToggle() == SerieBtn){
+                String season = Season.getText();
+                String episode = Episode.getText();
+                Series newItem;
+                newItem = new Series(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre, Integer.parseInt(season),Integer.parseInt(episode));
+                locaWeb.editarCatalago(newItem);
+            }
         }else{
 
         }
         carregarCatalogo(this.locaWeb.getCatalogo());
-        //ClearInputTextt();
+        ClearInputItemTextt();
         FormPaneItem.setOpacity(0);
 
+    }
+
+    private void ClearInputItemTextt() {
+        TitleInput.setText("");
+        GenreInput.setText("");
+        YearInput.setText("");
+        TimeInput.setText("");
+        Continuation.setText("");
+        Season.setText("");
+        Episode.setText("");
     }
 
     @FXML
@@ -278,17 +306,40 @@ public class AdminDashController implements Initializable {
 
     @FXML
     public void EditarItem(ActionEvent event) {
+        TitleInput.setText(catalogoSelecionado.getName());
+        GenreInput.setText(catalogoSelecionado.getGenre());
+        YearInput.setText(""+catalogoSelecionado.getYear());
+        TimeInput.setText(""+catalogoSelecionado.getDuration());
+
         isEditItem = true;
         FormPaneItem.setOpacity(1);
-
         if(catalogoSelecionado instanceof Movie){
-            TitleInput.setText(catalogoSelecionado.getName());
-            GenreInput.setText(catalogoSelecionado.getGenre());
-            YearInput.setText(""+catalogoSelecionado.getYear());
-            TimeInput.setText(""+catalogoSelecionado.getDuration());
             Continuation.setText(((Movie) catalogoSelecionado).getNameContinuation());
-        }else if(catalogoSelecionado instanceof Series){
+            Continuation.setDisable(false);
+            Continuation.setOpacity(1);
 
+            Season.setOpacity(0);
+            Season.setDisable(true);
+            Episode.setDisable(true);
+            Episode.setOpacity(0);
+
+            filmeBtn.setDisable(false);
+            filmeBtn.setSelected(true);
+            SerieBtn.setDisable(true);
+        }else if(catalogoSelecionado instanceof Series){
+            Continuation.setDisable(true);
+            Continuation.setOpacity(0);
+
+            Season.setOpacity(1);
+            Season.setDisable(false);
+            Episode.setDisable(false);
+            Episode.setOpacity(1);
+            Season.setText(((Series) catalogoSelecionado).getSeasons()+"");
+            Episode.setText(((Series) catalogoSelecionado).getEpisodes()+"");
+
+            filmeBtn.setDisable(true);
+            SerieBtn.setDisable(false);
+            SerieBtn.setSelected(true);
         }
 
     }
@@ -303,7 +354,7 @@ public class AdminDashController implements Initializable {
 
         locaWeb.removerItem(catalogoSelecionado);
         carregarCatalogo(this.locaWeb.getCatalogo());
-        //ClearInputTextt();
+        ClearInputItemTextt();
         FormPaneItem.setOpacity(0);
 
         EditItemBtn.setOpacity(0);
