@@ -1,8 +1,12 @@
 package com.locaweb.locaweb.view;
 
 import com.locaweb.locaweb.Classes.Account;
+import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.LocaWEB;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ClientDashController implements Initializable {
@@ -37,6 +40,8 @@ public class ClientDashController implements Initializable {
     private Button catalogBtn;
     @FXML
     private Button payBtn;
+    @FXML
+    private Button watchPauseBtn;
 
     @FXML
     private TextField EmailInput;
@@ -54,6 +59,9 @@ public class ClientDashController implements Initializable {
     private TextField CardInput;
 
     @FXML
+    private TextField SearchInput;
+
+    @FXML
     private AnchorPane contaBloqueada;
 
     @FXML
@@ -64,6 +72,24 @@ public class ClientDashController implements Initializable {
 
     @FXML
     private AnchorPane meuPerfil;
+
+    @FXML
+    private Label myTitulo;
+
+    @FXML
+    private Label myYear;
+
+    @FXML
+    private Label myDuration;
+
+    @FXML
+    private Label myGenre;
+
+    @FXML
+    private ListView<ItemCatalog> catalogList;
+
+    private ObservableList<ItemCatalog> obsCatalogo;
+    private ItemCatalog catalogoSelecionado;
 
     @FXML
     public void CloseClick(ActionEvent event) {
@@ -146,7 +172,34 @@ public class ClientDashController implements Initializable {
                 meuPerfil.setOpacity(0);
                 pagarConta.setOpacity(0);
             }
+            carregarCatalogo(this.locaWeb.getCatalogo());
+
+            catalogList.getSelectionModel().selectedItemProperty().addListener((observableValue, catalogo, t1) -> {
+                catalogoSelecionado = catalogList.getSelectionModel().getSelectedItem();
+                if(catalogoSelecionado!=null) {
+                    myTitulo.setText(catalogoSelecionado.getName());
+                    myDuration.setText(""+catalogoSelecionado.getDuration());
+                    myYear.setText(""+catalogoSelecionado.getYear());
+                    myGenre.setText(catalogoSelecionado.getGenre());
+                    watchPauseBtn.setDisable(false);
+                    watchPauseBtn.setOpacity(1);
+                    if(verifyWatchSituation()) watchPauseBtn.setText("Pausar");
+                        else watchPauseBtn.setText("Assistir");
+
+                }
+            });
         });
+
+        SearchInput.textProperty().addListener((obs, oldText, newText) -> {
+            // do what you need with newText here, e.g.
+            if(newText.length() > 2)  {
+                carregarCatalogo(locaWeb.getCatalogBusiness().search(newText));
+            }else{
+                carregarCatalogo(this.locaWeb.getCatalogo());
+            }
+
+        });
+
     }
 
     private void updateButtons(){
@@ -178,16 +231,25 @@ public class ClientDashController implements Initializable {
 
     @FXML
     public void LogOutClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login-view.fxml"));
-        Parent root = loader.load();
+        BackToLoginView(event);
+    }
 
-        LoginController controller = loader.getController();
-        controller.setLocaWeb(locaWeb);
+    @FXML
+    public void WatchPause() {
+       if(verifyWatchSituation()){
+           watchPauseBtn.setText("Assistir");
+           catalogoSelecionado.pause();
+       }else{
+           watchPauseBtn.setText("Pausar");
+           for(ItemCatalog item:obsCatalogo){
+               item.pause();
+           }
+           catalogoSelecionado.watch();
+       }
+    }
 
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public boolean verifyWatchSituation(){
+        return catalogoSelecionado.getIsWatching();
     }
 
     private void BackToLoginView(ActionEvent event) throws IOException {
@@ -202,5 +264,11 @@ public class ClientDashController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void carregarCatalogo(ArrayList<ItemCatalog> getCatalago){
+        obsCatalogo = FXCollections.observableArrayList(getCatalago);
+        catalogList.setItems(obsCatalogo);
+    }
+
 
 }

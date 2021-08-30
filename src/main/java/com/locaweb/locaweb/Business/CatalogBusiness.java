@@ -31,4 +31,7 @@ public class CatalogBusiness {
 
     }
 
+    public ArrayList<ItemCatalog> search(String nome){
+        return repositorio.searchByName(nome);
+    }
 }

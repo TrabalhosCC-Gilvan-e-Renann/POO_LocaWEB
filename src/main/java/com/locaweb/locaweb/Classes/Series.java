@@ -3,7 +3,6 @@ package com.locaweb.locaweb.Classes;
 import java.util.ArrayList;
 
 public class Series extends ItemCatalog{
-    float duration;
     float timeWatched;
     int seasonWatched;
     int episodeWatched;
@@ -11,7 +10,7 @@ public class Series extends ItemCatalog{
     int episodes;
     
     public Series(String name, int id, int year, float duration, String genre, int season, int episodes){
-        super(name, id, year, genre);
+        super(name, id,duration, year, genre);
         this.duration = duration;
         this.timeWatched = 0;
         this.episodeWatched = 0;
@@ -32,8 +31,10 @@ public class Series extends ItemCatalog{
         }
         
     }
-    public int pause(int time, int episode, int season){
-        if(this.timeWatched < time && this.episodeWatched==episode && this.seasonWatched==season){
+
+    @Override
+    public void pause(/*int time, int episode, int season*/){
+        /*if(this.timeWatched < time && this.episodeWatched==episode && this.seasonWatched==season){
             this.timeWatched = time;
             return 1;
         }else if(this.episodeWatched<episode || this.seasonWatched<season){
@@ -44,8 +45,10 @@ public class Series extends ItemCatalog{
         }
         else{
             return -1;
-        }
+        }*/
+        super.pause();
     }
+
     @Override
     public void watch(){
         super.watch();

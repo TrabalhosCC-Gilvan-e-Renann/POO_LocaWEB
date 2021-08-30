@@ -18,20 +18,18 @@ public class RepositoryCatalog implements IRepositoryCatalog{
     public RepositoryCatalog(){
         itens = new ArrayList<ItemCatalog>();
         itens.add(new Movie("Aladdin",1,2019,2.08f,"Música/Infantil"));
-        itens.add(new Series("The Witcher",2,2019,1.08f,"Música/Infantil",1,8));
+        itens.add(new Series("The Witcher",2,2019,1.08f,"Ação/Aventura",1,8));
     }
 
-    public Integer searchByName(String name){
-        int pos=-1;
-        int n = this.itens.size();
-        for (int i=0; i<n; i++) {
-            if(name==this.itens.get(i).getName()){
-                pos = i;
-                System.out.printf("Item Encintrado");
+    public ArrayList<ItemCatalog> searchByName(String name){
+        ArrayList<ItemCatalog> busca = new ArrayList<ItemCatalog>();
+        for (ItemCatalog item : itens){
+            if(item.getName().toLowerCase().contains(name.toLowerCase())){
+                busca.add(item);
             }
         }
         System.out.printf("Busca Encerrada");
-        return itens.get(pos).getId();
+        return busca;
     }
     public Integer searchById(int id){
         int pos=-1;

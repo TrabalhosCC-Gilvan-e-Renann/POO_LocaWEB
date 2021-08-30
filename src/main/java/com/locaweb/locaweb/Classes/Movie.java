@@ -1,19 +1,18 @@
 package com.locaweb.locaweb.Classes;
 
 public class Movie extends ItemCatalog{
-    float duration;
     boolean continuation;
     String nameContinuation;
     float timeWatch;
     
     public Movie(String name, int id, int year, float duration, String genre){
-        super(name, id, year, genre);
+        super(name, id,duration, year, genre);
         this.duration = duration;
         this.continuation = false;
         this.timeWatch = 0;
     }
     public Movie(String name, int id, int year, float duration, String genre, String nameContinuation){
-        super(name, id, year, genre);
+        super(name, id,duration, year, genre);
         this.duration = duration;
         this.continuation = true;
         this.timeWatch = 0;
@@ -33,14 +32,18 @@ public class Movie extends ItemCatalog{
         }
         
     }
-    public int pause(int time){
-        if(this.timeWatch < time){
+
+    @Override
+    public void pause(){
+        /*if(this.timeWatch < time){
             this.timeWatch = time;
             return 1;
         }else{
             return -1;
-        }
+        }*/
+        super.pause();
     }
+
     @Override
     public void watch(){
         super.watch();
