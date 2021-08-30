@@ -60,6 +60,9 @@ public class ClientDashController implements Initializable {
     private AnchorPane pagarConta;
 
     @FXML
+    private AnchorPane watchPane;
+
+    @FXML
     private AnchorPane meuPerfil;
 
     @FXML
@@ -84,9 +87,22 @@ public class ClientDashController implements Initializable {
         pagarConta.setOpacity(0);
     }
 
+    @FXML
+    public void SeeCatalog(ActionEvent event) {
+        watchPane.setOpacity(1);
+        watchPane.setDisable(false);
+        contaBloqueada.setOpacity(0);
+        meuPerfil.setOpacity(0);
+        pagarConta.setOpacity(0);
+        meuPerfil.setDisable(true);
+        contaBloqueada.setDisable(true);
+        pagarConta.setDisable(true);
+    }
 
     @FXML
     public void ProfileClick(ActionEvent event) {
+        watchPane.setOpacity(0);
+        watchPane.setDisable(true);
         contaBloqueada.setOpacity(0);
         meuPerfil.setOpacity(1);
         pagarConta.setOpacity(0);
@@ -94,15 +110,17 @@ public class ClientDashController implements Initializable {
         contaBloqueada.setDisable(true);
         pagarConta.setDisable(true);
 
+        NameInput.setText(locaWeb.getContaLogada().getName());
         EmailInput.setText(locaWeb.getContaLogada().getEmail());
         PassInput.setText(locaWeb.getContaLogada().getPass());
         CpfInput.setText(locaWeb.getContaLogada().getCPF());
-        NameInput.setText(locaWeb.getContaLogada().getName());
         CardInput.setText(locaWeb.getContaLogada().getCard());
     }
 
     @FXML
     public void PayClick(ActionEvent event) {
+        watchPane.setOpacity(0);
+        watchPane.setDisable(true);
         contaBloqueada.setOpacity(0);
         meuPerfil.setDisable(true);
         contaBloqueada.setDisable(true);

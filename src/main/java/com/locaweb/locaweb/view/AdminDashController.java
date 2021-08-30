@@ -215,6 +215,21 @@ public class AdminDashController implements Initializable {
     }
 
     @FXML
+    public void EditarItem(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void CadastrarItem(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void RemoverItem(ActionEvent event) {
+
+    }
+
+    @FXML
     public void BlockUser(ActionEvent event) {
 
     }

@@ -27,4 +27,8 @@ public class CatalogBusiness {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public void adicionar(ItemCatalog item){
+
+    }
+
 }
