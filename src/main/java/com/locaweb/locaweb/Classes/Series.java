@@ -3,12 +3,12 @@ package com.locaweb.locaweb.Classes;
 import java.util.ArrayList;
 
 public class Series extends ItemCatalog{
-    float duration;
-    float timeWatched;
-    int seasonWatched;
-    int episodeWatched;
-    int season;
-    int episodes;
+    private float duration;
+    protected float timeWatched;
+    protected int seasonWatched;
+    private int episodeWatched;
+    private int season;
+    private int episodes;
     
     public Series(String name, int id, int year, float duration, String genre, int season, int episodes){
         super(name, id, year, genre);
@@ -48,6 +48,6 @@ public class Series extends ItemCatalog{
     }
     @Override
     public void watch(){
-        super.watch();
+        System.out.print("Você esta assistindo a serie: "+getName());
     }
 }

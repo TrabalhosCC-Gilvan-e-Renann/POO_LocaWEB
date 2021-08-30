@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     private LocaWEB locaWeb;
-
     private Parent root;
     private Stage stage;
 
