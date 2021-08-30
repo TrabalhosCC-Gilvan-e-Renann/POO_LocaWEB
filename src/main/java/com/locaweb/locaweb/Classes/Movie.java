@@ -1,9 +1,9 @@
 package com.locaweb.locaweb.Classes;
 
 public class Movie extends ItemCatalog{
-    boolean continuation;
-    String nameContinuation;
-    float timeWatch;
+    private boolean continuation;
+    private String nameContinuation;
+    private float timeWatch;
     
     public Movie(String name, int id, int year, float duration, String genre){
         super(name, id,duration, year, genre);
@@ -46,7 +46,7 @@ public class Movie extends ItemCatalog{
 
     @Override
     public void watch(){
-        super.watch();
+        System.out.print("Você esta assistindo o filme: "+getName());
     }
     
 }

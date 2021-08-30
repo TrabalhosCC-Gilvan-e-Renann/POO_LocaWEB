@@ -17,10 +17,10 @@ public class ItemCatalog {
         return name;
     }
 
-    String name;
-    int id;
-    int year;
-    String genre;
+    protected String name;
+    protected int id;
+    protected int year;
+    protected String genre;
 
     public boolean getIsWatching() {
         return isWatching;
