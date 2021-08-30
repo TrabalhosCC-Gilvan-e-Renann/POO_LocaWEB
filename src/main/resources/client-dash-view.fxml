@@ -121,7 +121,7 @@
       </Button>
       <AnchorPane fx:id="watchPane" layoutX="43.0" layoutY="184.0" opacity="0.0" prefHeight="606.0" prefWidth="1081.0">
          <children>
-            <ListView fx:id="listView" layoutX="15.0" layoutY="87.0" prefHeight="505.0" prefWidth="396.0" style="-fx-background-radius: 15;" />
+            <ListView fx:id="listView" layoutX="15.0" layoutY="87.0" prefHeight="505.0" prefWidth="396.0" />
             <TextField fx:id="SearchInput" layoutX="48.0" layoutY="36.0" prefHeight="43.0" prefWidth="331.0" promptText="Pesquisar" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                <font>
                   <Font size="20.0" />
