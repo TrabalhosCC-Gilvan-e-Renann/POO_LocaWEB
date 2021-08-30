@@ -66,6 +66,9 @@ public class LocaWEB {
         return catalogo.listarSeries();
     }
 
+    public void removerItem(ItemCatalog catalogoSelecionado) {
+        catalogo.removerItem(catalogoSelecionado);
+    }
 }
 
 

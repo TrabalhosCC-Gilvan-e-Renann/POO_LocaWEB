@@ -48,6 +48,8 @@ public class AdminDashController implements Initializable {
 
     @FXML
     private Label userNmame;
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField EmailInput;
@@ -68,10 +70,19 @@ public class AdminDashController implements Initializable {
     private AnchorPane FormPane;
 
     @FXML
+    private AnchorPane FormPaneItem;
+
+    @FXML
     private Button EditBtn;
 
     @FXML
     private Button RemoveBtn;
+
+    @FXML
+    private Button EditItemBtn;
+
+    @FXML
+    private Button RemoveItemBtn;
 
 
     private ObservableList<Account> obsUsers;
@@ -86,14 +97,12 @@ public class AdminDashController implements Initializable {
 
     public void carregarUsuários(){
         ArrayList<Account> contas = this.locaWeb.getContas();
-        System.out.println(contas);
         obsUsers = FXCollections.observableArrayList(contas);
         usersList.setItems(obsUsers);
     }
 
     public void carregarCatalogo(ArrayList<ItemCatalog> getCatalago){
         ArrayList<ItemCatalog> catalogo = getCatalago;
-        System.out.println(catalogo);
         obsCatalogo = FXCollections.observableArrayList(catalogo);
         catalogList.setItems(obsCatalogo);
     }
@@ -121,6 +130,17 @@ public class AdminDashController implements Initializable {
 
         });
 
+
+        catalogList.getSelectionModel().selectedItemProperty().addListener((observableValue, account, t1) -> {
+            catalogoSelecionado = catalogList.getSelectionModel().getSelectedItem();
+            if(catalogoSelecionado!=null) titleLabel.setText(catalogoSelecionado.getName()); else titleLabel.setText("");
+            EditItemBtn.setOpacity(1);
+            EditItemBtn.setDisable(false);
+            RemoveItemBtn.setOpacity(1);
+            RemoveItemBtn.setDisable(false);
+            FormPaneItem.setOpacity(0);
+
+        });
 
     }
 
@@ -233,6 +253,17 @@ public class AdminDashController implements Initializable {
 
     @FXML
     public void RemoverItem(ActionEvent event) {
+
+        locaWeb.removerItem(catalogoSelecionado);
+        carregarCatalogo(this.locaWeb.getCatalogo());
+        //ClearInputTextt();
+        FormPaneItem.setOpacity(0);
+
+        EditItemBtn.setOpacity(0);
+        EditItemBtn.setDisable(true);
+        RemoveItemBtn.setOpacity(0);
+        RemoveItemBtn.setDisable(true);
+        FormPaneItem.setOpacity(0);
 
     }
 

@@ -102,6 +102,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
+                        <Label fx:id="titleLabel" alignment="CENTER" layoutX="421.0" layoutY="39.0" prefHeight="38.0" prefWidth="677.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Label>
                         <ListView fx:id="catalogList" layoutX="26.0" layoutY="25.0" prefHeight="581.0" prefWidth="380.0" />
                         <Button fx:id="filterAllBtn" layoutX="157.0" layoutY="627.0" onAction="#FilterAll" prefHeight="35.0" prefWidth="126.0" style="-fx-background-color: #828282; -fx-background-radius: 100;" text="Todos" textFill="WHITE">
                            <font>

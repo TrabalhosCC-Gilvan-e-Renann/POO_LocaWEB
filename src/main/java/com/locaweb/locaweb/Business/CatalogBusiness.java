@@ -34,4 +34,11 @@ public class CatalogBusiness {
     public ArrayList<ItemCatalog> search(String nome){
         return repositorio.searchByName(nome);
     }
+
+    public void removerItem(ItemCatalog catalogoSelecionado) {
+        boolean deletou = repositorio.delete(catalogoSelecionado.getId());
+        if(deletou){
+            System.out.println("DEU BOM!");
+        }
+    }
 }
