@@ -4,9 +4,10 @@ import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.ItemCatalog;
 
 public interface IRepositoryCatalog {
-    public abstract void adicionar(ItemCatalog item);
-    void remover(ItemCatalog item);
-    void atualizar(ItemCatalog item);
-    Account consultar(ItemCatalog item);
-    Account consultar(int numero);
+    Integer searchByName(String name);
+    Integer searchById(int id);
+    void include(ItemCatalog Item);
+    Boolean delete(int id);
+    Boolean update(int id, String name, int year, String genre);
 }
+

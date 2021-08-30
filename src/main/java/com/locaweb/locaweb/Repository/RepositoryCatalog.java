@@ -9,41 +9,65 @@ import java.util.ArrayList;
 
 public class RepositoryCatalog implements IRepositoryCatalog{
 
-    public ArrayList<ItemCatalog> getCatalogo() {
-        return catalogo;
+    public ArrayList<ItemCatalog> getCatalog() {
+        return itens;
     }
 
-    ArrayList<ItemCatalog> catalogo;
+    ArrayList<ItemCatalog> itens;
 
     public RepositoryCatalog(){
-        catalogo = new ArrayList<ItemCatalog>();
-        catalogo.add(new Movie("Aladdin",1,2019,2.08f,"Música/Infantil"));
-        catalogo.add(new Series("The Witcher",2,2019,1.08f,"Música/Infantil",1,8));
+        itens = new ArrayList<ItemCatalog>();
+        itens.add(new Movie("Aladdin",1,2019,2.08f,"Música/Infantil"));
+        itens.add(new Series("The Witcher",2,2019,1.08f,"Música/Infantil",1,8));
     }
 
-
-    @Override
-    public void adicionar(ItemCatalog item) {
-
+    public Integer searchByName(String name){
+        int pos=-1;
+        int n = this.itens.size();
+        for (int i=0; i<n; i++) {
+            if(name==this.itens.get(i).getName()){
+                pos = i;
+                System.out.printf("Item Encintrado");
+            }
+        }
+        System.out.printf("Busca Encerrada");
+        return itens.get(pos).getId();
     }
-
-    @Override
-    public void remover(ItemCatalog item) {
-
+    public Integer searchById(int id){
+        int pos=-1;
+        int n = this.itens.size();
+        for (int i=0; i<n; i++) {
+            if(id==this.itens.get(i).getId()){
+                pos=i;
+                System.out.printf("Item Encintrado");
+            }
+        }
+        System.out.printf("Busca Encerrada");
+        return pos;
     }
-
-    @Override
-    public void atualizar(ItemCatalog item) {
-
+    public void include(ItemCatalog Item){
+        this.itens.add(Item);
     }
-
-    @Override
-    public Account consultar(ItemCatalog item) {
-        return null;
+    public Boolean delete(int id){
+        int index = searchById(id);
+        if(index == -1) {
+            System.out.printf("Item não Existe");
+            return false;
+        }else{
+            this.itens.remove(index);
+            System.out.printf("Bye Bye Item");
+            return true;
+        }
     }
-
-    @Override
-    public Account consultar(int numero) {
-        return null;
+    public Boolean update(int id, String name, int year, String genre){
+        int index = searchById(id);
+        if(index == -1) {
+            System.out.printf("Item não Existe");
+            return false;
+        }else{
+            this.itens.get(index).update(name, year, genre);
+            System.out.printf("O Item mudou");
+            return true;
+        }
     }
 }

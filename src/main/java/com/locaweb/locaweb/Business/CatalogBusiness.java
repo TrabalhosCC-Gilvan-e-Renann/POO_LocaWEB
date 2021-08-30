@@ -16,14 +16,14 @@ public class CatalogBusiness {
     }
 
     public ArrayList<ItemCatalog> listarCatalogo(){
-        return repositorio.getCatalogo();
+        return repositorio.getCatalog();
     }
     public ArrayList<ItemCatalog> listarFilmes(){
-        return repositorio.getCatalogo().stream().filter(item -> item instanceof Movie)
+        return repositorio.getCatalog().stream().filter(item -> item instanceof Movie)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
     public ArrayList<ItemCatalog> listarSeries(){
-        return repositorio.getCatalogo().stream().filter(item -> item instanceof Series)
+        return repositorio.getCatalog().stream().filter(item -> item instanceof Series)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
