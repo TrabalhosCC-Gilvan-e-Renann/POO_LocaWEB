@@ -33,6 +33,9 @@ public class ClientDashController implements Initializable {
     private Label olaLabel;
 
     @FXML
+    private Label watchingLabel;
+
+    @FXML
     private Label cardLabel;
 
     @FXML
@@ -75,6 +78,9 @@ public class ClientDashController implements Initializable {
 
     @FXML
     private AnchorPane pagarConta;
+
+    @FXML
+    private AnchorPane WatchingPane;
 
     @FXML
     private AnchorPane watchPane;
@@ -124,6 +130,13 @@ public class ClientDashController implements Initializable {
 
     @FXML
     public void SeeCatalog(ActionEvent event) {
+        WatchingPane.setDisable(true);
+        WatchingPane.setOpacity(0);
+        catalogList.setOpacity(1);
+        catalogList.setDisable(false);
+        locaWeb.getContaLogada().setWatching(null);
+        if(locaWeb.getContaLogada().getWatching() == catalogoSelecionado) watchPauseBtn.setText("Pausar");
+        else watchPauseBtn.setText("Assistir");
         watchPane.setOpacity(1);
         watchPane.setDisable(false);
         contaBloqueada.setOpacity(0);
@@ -136,6 +149,7 @@ public class ClientDashController implements Initializable {
 
     @FXML
     public void ProfileClick(ActionEvent event) {
+        locaWeb.getContaLogada().setWatching(null);
         watchPane.setOpacity(0);
         watchPane.setDisable(true);
         contaBloqueada.setOpacity(0);
@@ -154,6 +168,7 @@ public class ClientDashController implements Initializable {
 
     @FXML
     public void PayClick(ActionEvent event) {
+        locaWeb.getContaLogada().setWatching(null);
         watchPane.setOpacity(0);
         watchPane.setDisable(true);
         contaBloqueada.setOpacity(0);
@@ -197,7 +212,7 @@ public class ClientDashController implements Initializable {
                     myGenre.setText(catalogoSelecionado.getGenre());
                     watchPauseBtn.setDisable(false);
                     watchPauseBtn.setOpacity(1);
-                    if(verifyWatchSituation()) watchPauseBtn.setText("Pausar");
+                    if(locaWeb.getContaLogada().getWatching() == catalogoSelecionado) watchPauseBtn.setText("Pausar");
                         else watchPauseBtn.setText("Assistir");
                     if(catalogoSelecionado instanceof Series) mySeasons.setText(((Series) catalogoSelecionado).getSeasons() +" Temporada(s) com " +((Series) catalogoSelecionado).getEpisodes() + " episódio(s) no total");
                         else mySeasons.setText("");
@@ -250,25 +265,32 @@ public class ClientDashController implements Initializable {
 
     @FXML
     public void LogOutClick(ActionEvent event) throws IOException {
+        locaWeb.getContaLogada().setWatching(null);
         BackToLoginView(event);
     }
 
     @FXML
     public void WatchPause() {
-       if(verifyWatchSituation()){
-           watchPauseBtn.setText("Assistir");
-           catalogoSelecionado.pause();
-       }else{
+       if(verifyWatchSituation()==null){
            watchPauseBtn.setText("Pausar");
-           for(ItemCatalog item:obsCatalogo){
-               item.pause();
-           }
-           catalogoSelecionado.watch();
+           watchingLabel.setText("Você está assistindo "+catalogoSelecionado.getName()+"!");
+           locaWeb.getContaLogada().setWatching(catalogoSelecionado);
+           WatchingPane.setDisable(false);
+           WatchingPane.setOpacity(1);
+           catalogList.setOpacity(0);
+           catalogList.setDisable(true);
+       }else{
+           watchPauseBtn.setText("Assistir");
+           WatchingPane.setDisable(true);
+           WatchingPane.setOpacity(0);
+           catalogList.setOpacity(1);
+           catalogList.setDisable(false);
+           locaWeb.getContaLogada().setWatching(null);
        }
     }
 
-    public boolean verifyWatchSituation(){
-        return catalogoSelecionado.getIsWatching();
+    public ItemCatalog verifyWatchSituation(){
+        return locaWeb.getContaLogada().getWatching();
     }
 
     private void BackToLoginView(ActionEvent event) throws IOException {

@@ -165,6 +165,19 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <AnchorPane fx:id="WatchingPane" disable="true" layoutX="13.0" layoutY="8.0" opacity="0.0" prefHeight="553.0" prefWidth="1043.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+               <children>
+                  <Label fx:id="watchingLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="125.0" prefHeight="192.0" prefWidth="1020.0" text="Você está assistindo " textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="PauseBtn" layoutX="380.0" layoutY="473.0" mnemonicParsing="false" onAction="#WatchPause" prefHeight="62.0" prefWidth="297.0" style="-fx-background-color: red; -fx-background-radius: 25;" text="Pausar" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>
