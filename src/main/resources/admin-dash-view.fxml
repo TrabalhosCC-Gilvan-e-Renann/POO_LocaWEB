@@ -29,7 +29,7 @@
                               <Font size="29.0" />
                            </font>
                         </Button>
-                        <AnchorPane fx:id="FormPane" layoutX="466.0" layoutY="223.0" prefHeight="460.0" prefWidth="601.0">
+                        <AnchorPane fx:id="FormPane" layoutX="466.0" layoutY="223.0" opacity="0.0" prefHeight="460.0" prefWidth="601.0">
                            <children>
                                <TextField fx:id="NameInput" prefHeight="54.0" prefWidth="628.0" promptText="Nome Completo" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                    <font>
