@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -17,17 +18,22 @@
          </font>
       </Label>
       <Separator layoutX="14.0" layoutY="49.0" prefHeight="0.0" prefWidth="1095.0" style="-fx-background-color: white;" />
-      <Button fx:id="catalogBtn" layoutX="204.0" layoutY="73.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="297.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="Filmes e Séries" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="catalogBtn" layoutX="73.0" layoutY="74.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="297.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="Filmes e Séries" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
          <font>
             <Font size="34.0" />
          </font>
       </Button>
-      <Button fx:id="payBtn" layoutX="594.0" layoutY="75.0" mnemonicParsing="false" onAction="#PayClick" prefHeight="58.0" prefWidth="321.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="Pagar Mensalidade" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="payBtn" layoutX="401.0" layoutY="76.0" mnemonicParsing="false" onAction="#PayClick" prefHeight="58.0" prefWidth="321.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="Pagar Mensalidade" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
          <font>
             <Font size="32.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="pagarConta" layoutX="214.0" layoutY="288.0" prefHeight="379.0" prefWidth="691.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 25; -fx-background-radius: 25;">
+      <Button fx:id="ProfileBtn" layoutX="749.0" layoutY="74.0" mnemonicParsing="false" onAction="#ProfileClick" prefHeight="62.0" prefWidth="297.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="Meu Perfil" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="pagarConta" layoutX="214.0" layoutY="288.0" opacity="0.0" prefHeight="379.0" prefWidth="691.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 25; -fx-background-radius: 25;">
          <children>
             <Label fx:id="cardLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="238.0" prefWidth="653.0" text="Pagar a Mensalidade usando o cartão 2111111111111111111 11 ?" textAlignment="CENTER" wrapText="true">
                <font>
@@ -45,7 +51,7 @@
                </font>
             </Button>
          </children></AnchorPane>
-      <AnchorPane fx:id="contaBloqueada" disable="true" layoutX="33.0" layoutY="174.0" opacity="0.0" prefHeight="606.0" prefWidth="1081.0" visible="false">
+      <AnchorPane fx:id="contaBloqueada" layoutX="33.0" layoutY="174.0" opacity="0.0" prefHeight="606.0" prefWidth="1081.0">
          <children>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="218.0" prefHeight="170.0" prefWidth="681.0" text="É necessário pagar a mensalidade para desbloquear a sua conta!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
@@ -54,5 +60,64 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="meuPerfil" layoutX="176.0" layoutY="242.0" opacity="0.0" prefHeight="472.0" prefWidth="767.0" style="-fx-background-color: white; -fx-background-radius: 35;">
+         <children>
+            <TextField fx:id="NameInput" layoutX="70.0" layoutY="53.0" prefHeight="54.0" prefWidth="628.0" promptText="Nome Completo" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="EmailInput" layoutX="67.0" layoutY="127.0" prefHeight="54.0" prefWidth="313.0" promptText="E-mail" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </TextField>
+            <PasswordField fx:id="PassInput" layoutX="384.0" layoutY="127.0" prefHeight="54.0" prefWidth="316.0" promptText="Senha" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </PasswordField>
+            <TextField fx:id="CpfInput" layoutX="67.0" layoutY="200.0" prefHeight="54.0" prefWidth="313.0" promptText="Cpf" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="CardInput" layoutX="383.0" layoutY="198.0" prefHeight="54.0" prefWidth="315.0" promptText="Número do Cartão" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </TextField>
+            <Button fx:id="ConfirmBtn" layoutX="252.0" layoutY="298.0" onAction="#ConfirmClick" prefHeight="54.0" prefWidth="263.0" style="-fx-background-color: #2fa878; -fx-background-radius: 100;" text="Editar" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Button>
+            <Button fx:id="RemoveBtn" layoutX="253.0" layoutY="365.0" onAction="#RemoveClick" prefHeight="54.0" prefWidth="263.0" style="-fx-background-color: red; -fx-background-radius: 100;" text="Remover" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="logOutBtn" layoutX="963.0" layoutY="14.0" mnemonicParsing="false" onAction="#LogOutClick" style="-fx-background-color: transparent;" text="Deslogar" textFill="#ff0052">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

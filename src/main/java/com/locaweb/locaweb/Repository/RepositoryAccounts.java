@@ -52,11 +52,13 @@ public class RepositoryAccounts implements IRepositorioAccounts{
     private void editarDadosConta(Account nova,Account atual) {
         String name = nova.getName();
         String cpf = nova.getCPF();
+        String pass = nova.getPass();
         String cardNumber = nova.getCard();
         String email = nova.getEmail();
 
         atual.setCard(cardNumber);
         atual.setCPF(cpf);
+        atual.setPass(pass);
         atual.setEmail(email);
         atual.setName(name);
     }

@@ -134,15 +134,19 @@ public class AdminDashController implements Initializable {
     @FXML
     protected void RemoverClick(ActionEvent event) throws IOException {
         locaWeb.removerConta(usuarioSelecionado);
-        carregarUsuários();
-        ClearInputTextt();
-        FormPane.setOpacity(0);
+        if(usuarioSelecionado == locaWeb.getContaLogada()){
+            BackToLoginView(event);
+        }else{
+            carregarUsuários();
+            ClearInputTextt();
+            FormPane.setOpacity(0);
 
-        EditBtn.setOpacity(0);
-        EditBtn.setDisable(true);
-        RemoveBtn.setOpacity(0);
-        RemoveBtn.setDisable(true);
-        FormPane.setOpacity(0);
+            EditBtn.setOpacity(0);
+            EditBtn.setDisable(true);
+            RemoveBtn.setOpacity(0);
+            RemoveBtn.setDisable(true);
+            FormPane.setOpacity(0);
+        }
     }
 
     @FXML
@@ -189,13 +193,17 @@ public class AdminDashController implements Initializable {
 
     @FXML
     public void LogOutClick(ActionEvent event) throws IOException {
+        BackToLoginView(event);
+    }
+
+    private void BackToLoginView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/login-view.fxml"));
         Parent root = loader.load();
 
         LoginController controller = loader.getController();
         controller.setLocaWeb(locaWeb);
 
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
