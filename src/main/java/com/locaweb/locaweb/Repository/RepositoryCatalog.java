@@ -31,6 +31,7 @@ public class RepositoryCatalog implements IRepositoryCatalog{
         System.out.printf("Busca Encerrada");
         return busca;
     }
+
     public Integer searchById(int id){
         int pos=-1;
         int n = this.itens.size();
@@ -43,29 +44,43 @@ public class RepositoryCatalog implements IRepositoryCatalog{
         System.out.printf("Busca Encerrada");
         return pos;
     }
+
     public void include(ItemCatalog Item){
         this.itens.add(Item);
     }
+
     public Boolean delete(int id){
         int index = searchById(id);
         if(index == -1) {
             System.out.printf("Item não Existe");
             return false;
         }else{
-            this.itens.remove(index);
-            System.out.printf("Bye Bye Item");
-            return true;
+            try{
+                this.itens.remove(index);
+                System.out.printf("Bye Bye Item");
+                return true;
+            }catch (IndexOutOfBoundsException e){
+                System.out.printf("Acesso ao item foi perdido, tente novamente os nos contate pelo email Locaweb@locadoraweb.com");
+                return false;
+            }
         }
     }
+
     public Boolean update(int id, String name, int year, String genre){
         int index = searchById(id);
         if(index == -1) {
             System.out.printf("Item não Existe");
             return false;
         }else{
-            this.itens.get(index).update(name, year, genre);
-            System.out.printf("O Item mudou");
-            return true;
+            try {
+                this.itens.get(index).update(name, year, genre);
+                System.out.printf("O Item mudou");
+                return true;
+            }catch (IndexOutOfBoundsException e){
+                System.out.printf("Acesso ao item foi perdido, tente novamente os nos contate pelo email Locaweb@locadoraweb.com");
+                return false;
+            }
         }
     }
+
 }

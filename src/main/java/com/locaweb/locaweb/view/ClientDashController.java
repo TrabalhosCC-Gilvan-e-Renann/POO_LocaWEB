@@ -3,6 +3,7 @@ package com.locaweb.locaweb.view;
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.LocaWEB;
+import com.locaweb.locaweb.Classes.Series;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -33,6 +34,9 @@ public class ClientDashController implements Initializable {
 
     @FXML
     private Label cardLabel;
+
+    @FXML
+    private Label mySeasons;
 
     @FXML
     private Button closeBtn;
@@ -185,7 +189,8 @@ public class ClientDashController implements Initializable {
                     watchPauseBtn.setOpacity(1);
                     if(verifyWatchSituation()) watchPauseBtn.setText("Pausar");
                         else watchPauseBtn.setText("Assistir");
-
+                    if(catalogoSelecionado instanceof Series) mySeasons.setText(((Series) catalogoSelecionado).getSeasons() +" Temporada(s) com " +((Series) catalogoSelecionado).getEpisodes() + " episódio(s) no total");
+                        else mySeasons.setText("");
                 }
             });
         });

@@ -6,28 +6,34 @@ public class Series extends ItemCatalog{
     private float timeWatched;
     private int seasonWatched;
     private int episodeWatched;
-    private int season;
+    private int seasons;
+
+    public int getSeasons() {
+        return seasons;
+    }
+
+    public int getEpisodes() {
+        return episodes;
+    }
+
     private int episodes;
     
-    public Series(String name, int id, int year, float duration, String genre, int season, int episodes){
+    public Series(String name, int id, int year, float duration, String genre, int seasons, int episodes){
         super(name, id,duration, year, genre);
         this.duration = duration;
-        this.timeWatched = 0;
-        this.episodeWatched = 0;
-        this.seasonWatched = 0;
         this.episodes = episodes;
-        this.season = season;
+        this.seasons = seasons;
     }
-    public void update(String name, int year, float duration, String genre, int season, int episodes){
+    public void update(String name, int year, float duration, String genre, int seasons, int episodes){
         super.update(name, year, genre);
         this.duration = duration;
         this.episodes = episodes;
-        this.season = season;
+        this.seasons = seasons;
         if(duration<this.timeWatched){
             this.timeWatched = duration;
         }
-        if(season<this.seasonWatched){
-            this.seasonWatched = season;
+        if(seasons<this.seasonWatched){
+            this.seasonWatched = seasons;
         }
         
     }

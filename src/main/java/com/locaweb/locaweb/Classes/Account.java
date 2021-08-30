@@ -11,6 +11,17 @@ public class Account extends Client {
     private String dateOfCreate;
     private byte lastPaidMonthly;
     private boolean isAdmin;
+
+    public ItemCatalog getWatching() {
+        return watching;
+    }
+
+    public void setWatching(ItemCatalog watching) {
+        this.watching = watching;
+    }
+
+    private ItemCatalog watching;
+
     /*Para simplificar vamos considerar que a mensalidade de todas as contas devem ser pagas no dia 1*/
     public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin,int id){
         super(name, cpf, email,pass, numberCard);
