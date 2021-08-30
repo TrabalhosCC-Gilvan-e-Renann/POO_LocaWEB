@@ -24,18 +24,15 @@ public class Series extends ItemCatalog{
         this.episodes = episodes;
         this.seasons = seasons;
     }
-    public void update(String name, int year, float duration, String genre, int seasons, int episodes){
-        super.update(name, year, genre);
-        this.duration = duration;
-        this.episodes = episodes;
-        this.seasons = seasons;
-        if(duration<this.timeWatched){
-            this.timeWatched = duration;
+
+    @Override
+    public void update(ItemCatalog serie){
+        if(serie instanceof Series){
+            super.update(serie);
+            this.episodes = ((Series) serie).episodes;
+            this.seasons = ((Series) serie).seasons;
         }
-        if(seasons<this.seasonWatched){
-            this.seasonWatched = seasons;
-        }
-        
+
     }
 
     @Override

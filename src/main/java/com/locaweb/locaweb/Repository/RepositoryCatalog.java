@@ -66,14 +66,14 @@ public class RepositoryCatalog implements IRepositoryCatalog{
         }
     }
 
-    public Boolean update(int id, String name, int year, String genre){
-        int index = searchById(id);
+    public Boolean update(ItemCatalog item){
+        int index = searchById(item.getId());
         if(index == -1) {
             System.out.printf("Item não Existe");
             return false;
         }else{
             try {
-                this.itens.get(index).update(name, year, genre);
+                this.itens.get(index).update(item);
                 System.out.printf("O Item mudou");
                 return true;
             }catch (IndexOutOfBoundsException e){

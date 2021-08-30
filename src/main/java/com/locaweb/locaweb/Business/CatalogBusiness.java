@@ -41,4 +41,8 @@ public class CatalogBusiness {
             System.out.println("DEU BOM!");
         }
     }
+
+    public void editar(ItemCatalog newItem) {
+        repositorio.update(newItem);
+    }
 }

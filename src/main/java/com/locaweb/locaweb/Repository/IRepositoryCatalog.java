@@ -10,6 +10,6 @@ public interface IRepositoryCatalog {
     Integer searchById(int id);
     void include(ItemCatalog Item);
     Boolean delete(int id);
-    Boolean update(int id, String name, int year, String genre);
+    Boolean update(ItemCatalog itemCatalog);
 }
 

@@ -1,7 +1,14 @@
 package com.locaweb.locaweb.Classes;
 
+import java.util.Objects;
+
 public class Movie extends ItemCatalog{
     private boolean continuation;
+
+    public String getNameContinuation() {
+        return nameContinuation;
+    }
+
     private String nameContinuation;
     private float timeWatch;
     
@@ -18,19 +25,19 @@ public class Movie extends ItemCatalog{
         this.timeWatch = 0;
         this.nameContinuation = nameContinuation;    
     }
-    public void update(String name, int year, float duration, String genre, String... nameContinuation){
-        super.update(name, year, genre);
-        this.duration = duration;
-        if(nameContinuation.length>0){
-            this.continuation = true;
-            this.nameContinuation = nameContinuation[0];
-        }else{
-            this.continuation = false;
+
+    @Override
+    public void update(ItemCatalog movie){
+        if(movie instanceof Movie){
+            super.update(movie);
+            if((((Movie) movie).getNameContinuation().length()>0)){
+                this.continuation = true;
+                this.nameContinuation = ((Movie) movie).getNameContinuation();
+            }else{
+                this.continuation = false;
+            }
         }
-        if(duration<timeWatch){
-            this.timeWatch = duration;
-        }
-        
+
     }
 
     @Override

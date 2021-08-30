@@ -1,8 +1,6 @@
 package com.locaweb.locaweb.view;
 
-import com.locaweb.locaweb.Classes.Account;
-import com.locaweb.locaweb.Classes.ItemCatalog;
-import com.locaweb.locaweb.Classes.LocaWEB;
+import com.locaweb.locaweb.Classes.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,6 +26,7 @@ public class AdminDashController implements Initializable {
 
     private LocaWEB locaWeb;
     private boolean isEdit = false;
+    private boolean isEditItem = false;
 
     @FXML
     private Button closeBtn;
@@ -65,6 +64,20 @@ public class AdminDashController implements Initializable {
 
     @FXML
     private TextField CardInput;
+    @FXML
+    private TextField TitleInput;
+
+    @FXML
+    private TextField YearInput;
+
+    @FXML
+    private TextField TimeInput;
+
+    @FXML
+    private TextField Continuation;
+
+    @FXML
+    private TextField GenreInput;
 
     @FXML
     private AnchorPane FormPane;
@@ -181,6 +194,30 @@ public class AdminDashController implements Initializable {
             FormPane.setOpacity(0);
         }
     }
+    @FXML
+    protected void ConfirmItem(ActionEvent event) throws IOException {
+        String title = TitleInput.getText();
+        String genre = GenreInput.getText();
+        String year = YearInput.getText();
+        String time = TimeInput.getText();
+        String continuation = Continuation.getText();
+
+        if(isEditItem){
+            int catalogoId = catalogoSelecionado.getId();
+            Movie newItem;
+            if(continuation.length()>0) {
+                newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
+            }else newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre);
+
+            locaWeb.editarCatalago(newItem);
+        }else{
+
+        }
+        carregarCatalogo(this.locaWeb.getCatalogo());
+        //ClearInputTextt();
+        FormPaneItem.setOpacity(0);
+
+    }
 
     @FXML
     protected void ConfirmClick(ActionEvent event) throws IOException {
@@ -199,9 +236,7 @@ public class AdminDashController implements Initializable {
         }else {
             locaWeb.adicionarCliente(nome,cpf,email,senha,card,blocked);
         }
-        carregarUsuários();
-        ClearInputTextt();
-        FormPane.setOpacity(0);
+
     }
 
     private void ClearInputTextt(){
@@ -243,6 +278,18 @@ public class AdminDashController implements Initializable {
 
     @FXML
     public void EditarItem(ActionEvent event) {
+        isEditItem = true;
+        FormPaneItem.setOpacity(1);
+
+        if(catalogoSelecionado instanceof Movie){
+            TitleInput.setText(catalogoSelecionado.getName());
+            GenreInput.setText(catalogoSelecionado.getGenre());
+            YearInput.setText(""+catalogoSelecionado.getYear());
+            TimeInput.setText(""+catalogoSelecionado.getDuration());
+            Continuation.setText(((Movie) catalogoSelecionado).getNameContinuation());
+        }else if(catalogoSelecionado instanceof Series){
+
+        }
 
     }
 

@@ -1,6 +1,6 @@
 package com.locaweb.locaweb.Classes;
 
-public class ItemCatalog {
+public abstract class ItemCatalog {
     public int getId() {
         return id;
     }
@@ -56,10 +56,11 @@ public class ItemCatalog {
         setWatching(false);
     }
 
-    public void update(String name, int year, String genre){
-        this.name = name;
-        this.year = year;
-        this.genre = genre;
+    public void update(ItemCatalog item){
+        this.name = item.getName();
+        this.year = item.getYear();
+        this.genre = item.getGenre();
+        this.duration = item.getDuration();
     }
 
     @Override

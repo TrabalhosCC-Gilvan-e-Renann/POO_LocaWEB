@@ -1,4 +1,4 @@
-package com.locaweb.locaweb.Classes;
+/*package com.locaweb.locaweb.Classes;
 
 import java.util.ArrayList;
 
@@ -75,4 +75,4 @@ public class Catalog {
 				}
             }
 	}
-}
+}*/

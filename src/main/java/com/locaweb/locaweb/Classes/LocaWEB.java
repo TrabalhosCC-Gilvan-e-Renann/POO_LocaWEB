@@ -69,6 +69,10 @@ public class LocaWEB {
     public void removerItem(ItemCatalog catalogoSelecionado) {
         catalogo.removerItem(catalogoSelecionado);
     }
+
+    public void editarCatalago(ItemCatalog newItem) {
+        catalogo.editar(newItem);
+    }
 }
 
 
