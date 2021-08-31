@@ -229,7 +229,20 @@ public class AdminDashController implements Initializable {
                 locaWeb.editarCatalago(newItem);
             }
         }else{
-
+            if(Item.getSelectedToggle() == filmeBtn){
+                String continuation = Continuation.getText();
+                Movie newItem;
+                if(continuation.length()>0) {
+                    newItem = new Movie(title,0, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
+                }else newItem = new Movie(title,0, Integer.parseInt(year),Float.parseFloat(time),genre);
+                locaWeb.adicionarCatalogo(newItem);
+            }else if(Item.getSelectedToggle() == SerieBtn){
+                String season = Season.getText();
+                String episode = Episode.getText();
+                Series newItem;
+                newItem = new Series(title,0, Integer.parseInt(year),Float.parseFloat(time),genre, Integer.parseInt(season),Integer.parseInt(episode));
+                locaWeb.adicionarCatalogo(newItem);
+            }
         }
         carregarCatalogo(this.locaWeb.getCatalogo());
         ClearInputItemTextt();
@@ -347,8 +360,44 @@ public class AdminDashController implements Initializable {
     @FXML
     public void CadastrarItem(ActionEvent event) {
 
+        isEditItem = false;
+        ClearInputItemTextt();
+
+        FormPaneItem.setOpacity(1);
+        Continuation.setDisable(false);
+        Continuation.setOpacity(1);
+
+        Season.setOpacity(0);
+        Season.setDisable(true);
+        Episode.setDisable(true);
+        Episode.setOpacity(0);
+
+        filmeBtn.setDisable(false);
+        filmeBtn.setSelected(true);
+        SerieBtn.setDisable(false);
     }
 
+    @FXML
+    public void isMovie(ActionEvent event) {
+        Continuation.setDisable(false);
+        Continuation.setOpacity(1);
+
+        Season.setOpacity(0);
+        Season.setDisable(true);
+        Episode.setDisable(true);
+        Episode.setOpacity(0);
+    }
+
+    @FXML
+    public void isSerie(ActionEvent event) {
+        Continuation.setDisable(true);
+        Continuation.setOpacity(0);
+
+        Season.setOpacity(1);
+        Season.setDisable(false);
+        Episode.setDisable(false);
+        Episode.setOpacity(1);
+    }
     @FXML
     public void RemoverItem(ActionEvent event) {
 

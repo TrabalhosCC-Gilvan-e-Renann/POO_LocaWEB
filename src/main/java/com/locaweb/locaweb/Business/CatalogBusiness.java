@@ -28,7 +28,7 @@ public class CatalogBusiness {
     }
 
     public void adicionar(ItemCatalog item){
-
+        repositorio.include(item);
     }
 
     public ArrayList<ItemCatalog> search(String nome){

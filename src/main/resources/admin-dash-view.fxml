@@ -138,7 +138,7 @@
                                  <Font size="29.0" />
                              </font>
                          </Button>
-                         <AnchorPane fx:id="FormPaneItem" layoutX="466.0" layoutY="223.0" prefHeight="460.0" prefWidth="601.0">
+                         <AnchorPane fx:id="FormPaneItem" layoutX="466.0" layoutY="223.0" opacity="0.0" prefHeight="460.0" prefWidth="601.0">
                              <children>
                                  <TextField fx:id="TitleInput" layoutX="3.0" layoutY="61.0" prefHeight="54.0" prefWidth="628.0" promptText="Título" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #0e111a;">
                                      <font>
@@ -185,7 +185,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </TextField>
-                              <RadioButton fx:id="filmeBtn" contentDisplay="CENTER" layoutX="177.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="119.0" text="Filme" textFill="WHITE">
+                              <RadioButton fx:id="filmeBtn" contentDisplay="CENTER" layoutX="177.0" layoutY="14.0" mnemonicParsing="false" onAction="#isMovie" prefHeight="27.0" prefWidth="119.0" text="Filme" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -193,7 +193,7 @@
                                     <ToggleGroup fx:id="Item" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="SerieBtn" contentDisplay="CENTER" layoutX="349.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Serie" textFill="WHITE" toggleGroup="$Item">
+                              <RadioButton fx:id="SerieBtn" contentDisplay="CENTER" layoutX="349.0" layoutY="14.0" mnemonicParsing="false" onAction="#isSerie" prefHeight="27.0" prefWidth="108.0" text="Serie" textFill="WHITE" toggleGroup="$Item">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

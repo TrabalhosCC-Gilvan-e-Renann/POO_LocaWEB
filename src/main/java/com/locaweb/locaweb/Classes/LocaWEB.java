@@ -73,6 +73,10 @@ public class LocaWEB {
     public void editarCatalago(ItemCatalog newItem) {
         catalogo.editar(newItem);
     }
+
+    public void adicionarCatalogo(ItemCatalog newItem) {
+        catalogo.adicionar(newItem);
+    }
 }
 
 
