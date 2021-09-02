@@ -19,30 +19,57 @@ public class CatalogBusiness {
         return repositorio.getCatalog();
     }
     public ArrayList<ItemCatalog> listarFilmes(){
-        return repositorio.getCatalog().stream().filter(item -> item instanceof Movie)
-                .collect(Collectors.toCollection(ArrayList::new));
+        try {
+            return repositorio.getCatalog().stream().filter(item -> item instanceof Movie)
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }catch(NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
+            return null;
+        }
     }
     public ArrayList<ItemCatalog> listarSeries(){
-        return repositorio.getCatalog().stream().filter(item -> item instanceof Series)
-                .collect(Collectors.toCollection(ArrayList::new));
+        try {
+            return repositorio.getCatalog().stream().filter(item -> item instanceof Series)
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }catch (NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
+            return null;
+        }
     }
 
     public void adicionar(ItemCatalog item){
-        repositorio.include(item);
+        try {
+            repositorio.include(item);
+        }catch (NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
+        }
     }
 
     public ArrayList<ItemCatalog> search(String nome){
-        return repositorio.searchByName(nome);
+        try {
+            return repositorio.searchByName(nome);
+        }catch (NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
+            return null;
+        }
     }
 
     public void removerItem(ItemCatalog catalogoSelecionado) {
-        boolean deletou = repositorio.delete(catalogoSelecionado.getId());
-        if(deletou){
-            System.out.println("DEU BOM!");
+        try {
+            boolean deletou = repositorio.delete(catalogoSelecionado.getId());
+            if (deletou) {
+                System.out.println("DEU BOM!");
+            }
+        }catch (NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
         }
     }
 
     public void editar(ItemCatalog newItem) {
-        repositorio.update(newItem);
+        try {
+            repositorio.update(newItem);
+        }catch (NullPointerException e){
+            System.out.println("CATALOGO NÃO INSTANCIADO");
+        }
     }
 }

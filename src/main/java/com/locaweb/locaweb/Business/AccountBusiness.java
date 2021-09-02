@@ -21,27 +21,44 @@ public class AccountBusiness {
     }
 
     public void adicionar(Account conta) {
-        boolean existe = repositorio.existe(conta.getEmail());
-        if(existe){
-            System.out.println("CONTA JÁ EXISTENTE");
-        } else {
-            repositorio.adicionar(conta);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Cadastrado com Sucesso!");
-            alert.setTitle("Situação do Cadastro");
-            alert.show();
+        try {
+            boolean existe = repositorio.existe(conta.getEmail());
+            if (existe) {
+                System.out.println("CONTA JÁ EXISTENTE");
+            } else {
+                repositorio.adicionar(conta);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Cadastrado com Sucesso!");
+                alert.setTitle("Situação do Cadastro");
+                alert.show();
+            }
+        }catch (NullPointerException e){
+            System.out.println("CONTA NÃO INSTANCIADA");
         }
     }
 
     public ArrayList<Account> listarContas(){
-        return repositorio.getContas();
+        try {
+            return repositorio.getContas();
+        }catch (NullPointerException e){
+            System.out.println("CONTA NÃO INSTANCIADA");
+            return null;
+        }
     }
 
     public void editarConta(Account conta,int userId) {
-        repositorio.atualizar(conta,userId);
+        try {
+            repositorio.atualizar(conta, userId);
+        } catch (NullPointerException e){
+            System.out.println("CONTA NÃO INSTANCIADA");
+        }
     }
 
     public void removerConta(Account conta) {
-        repositorio.remover(conta);
+        try {
+            repositorio.remover(conta);
+        } catch (NullPointerException e){
+            System.out.println("CONTA NÃO INSTANCIADA");
+        }
     }
 }
