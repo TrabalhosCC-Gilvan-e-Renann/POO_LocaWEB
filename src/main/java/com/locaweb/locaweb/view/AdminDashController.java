@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AdminDashController implements Initializable {
@@ -279,7 +280,7 @@ public class AdminDashController implements Initializable {
 
         if(isEdit){
             int userId = usuarioSelecionado.getId();
-            Account newConta = new Account(nome,cpf,email,senha,card,false,userId,blocked);
+            Account newConta = new Account(nome,cpf,email,senha,card,false,userId,blocked,usuarioSelecionado.getDateOfCreate());
             locaWeb.editarCliente(newConta,userId);
         }else {
             locaWeb.adicionarCliente(nome,cpf,email,senha,card,blocked);

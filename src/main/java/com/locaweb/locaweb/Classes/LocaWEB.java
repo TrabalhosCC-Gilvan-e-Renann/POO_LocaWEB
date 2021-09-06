@@ -8,6 +8,7 @@ import com.locaweb.locaweb.Repository.RepositoryAccounts;
 import com.locaweb.locaweb.Repository.RepositoryCatalog;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LocaWEB {
 
@@ -37,7 +38,7 @@ public class LocaWEB {
     }
 
     public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard,boolean blocked) throws ClienteJaExisteException {
-        Account conta = new Account(name, cpf, email,pass,numberCard,false,0,blocked);
+        Account conta = new Account(name, cpf, email,pass,numberCard,false,0,blocked,new Date());
         contas.adicionar(conta);
     }
 

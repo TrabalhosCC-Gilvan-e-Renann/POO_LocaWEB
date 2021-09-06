@@ -250,7 +250,7 @@ public class ClientDashController implements Initializable {
         String card = CardInput.getText();
         boolean blocked = locaWeb.getContaLogada().isBlockedForADM();
 
-        Account newConta = new Account(nome,cpf,email,pass,card,false,locaWeb.getContaLogada().getId(),blocked);
+        Account newConta = new Account(nome,cpf,email,pass,card,false,locaWeb.getContaLogada().getId(),blocked,locaWeb.getContaLogada().getDateOfCreate());
         locaWeb.editarCliente(newConta,locaWeb.getContaLogada().getId());
         olaLabel.setText("Olá, "+locaWeb.getContaLogada().getName());
         meuPerfil.setDisable(true);

@@ -24,6 +24,15 @@ public class Account extends Client {
     private boolean blockedForADM;
     private Date dateOfCreate;
     private Date lastPaidMonthly;
+
+    public Date getDateOfCreate() {
+        return dateOfCreate;
+    }
+
+    public void setDateOfCreate(Date dateOfCreate) {
+        this.dateOfCreate = dateOfCreate;
+    }
+
     private boolean isAdmin;
 
     public ItemCatalog getWatching() {
@@ -37,13 +46,13 @@ public class Account extends Client {
     private ItemCatalog watching;
 
     /*Para simplificar vamos considerar que a mensalidade de todas as contas devem ser pagas no dia 1*/
-    public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin,int id,boolean blocked){
+    public Account(String name, String cpf, String email, String pass, String numberCard,boolean isAdmin,int id,boolean blocked,Date date){
         super(name, cpf, email,pass, numberCard);
         this.isAdmin = isAdmin;
         this.blockedForADM = blocked;
         this.blockedForPay = true;
         this.lastPaidMonthly = null;
-        this.dateOfCreate = new Date(); // considere que o Computador pegou a data atual
+        this.dateOfCreate = date; // considere que o Computador pegou a data atual
         this.id = id; // Considere que o banco de dados, passou o id
     }
     public int PaidMonthly(){

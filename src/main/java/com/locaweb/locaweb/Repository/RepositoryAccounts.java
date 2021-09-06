@@ -3,6 +3,7 @@ package com.locaweb.locaweb.Repository;
 import com.locaweb.locaweb.Classes.Account;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RepositoryAccounts implements IRepositorioAccounts{
 
@@ -14,7 +15,7 @@ public class RepositoryAccounts implements IRepositorioAccounts{
 
     public RepositoryAccounts(){
         contas = new ArrayList<Account>();
-        contas.add(new Account("Administrador","000","admin","admin","1",true,1,false));
+        contas.add(new Account("Administrador","000","admin","admin","1",true,1,false,new Date()));
     }
 
     @Override
@@ -35,7 +36,7 @@ public class RepositoryAccounts implements IRepositorioAccounts{
         String email = conta.getEmail();
         String pass = conta.getPass();
         boolean blocked = conta.isBlockedForADM();
-        contas.add(new Account(name,cpf,email,pass,cardNumber,false,contas.size()+1,blocked));
+        contas.add(new Account(name,cpf,email,pass,cardNumber,false,contas.size()+1,blocked,new Date()));
     }
 
     @Override
