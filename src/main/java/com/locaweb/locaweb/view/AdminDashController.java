@@ -268,7 +268,6 @@ public class AdminDashController implements Initializable {
         String nome = NameInput.getText();
         String card = CardInput.getText();
         boolean blocked = BlockedUser.getSelectedToggle() == blockUserBtn;
-        System.out.println("BLOCKED"+blocked);
 
         if(isEdit){
             int userId = usuarioSelecionado.getId();
@@ -277,7 +276,7 @@ public class AdminDashController implements Initializable {
         }else {
             locaWeb.adicionarCliente(nome,cpf,email,senha,card,blocked);
         }
-
+        carregarUsuários();
     }
 
     private void ClearInputTextt(){

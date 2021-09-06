@@ -2,6 +2,7 @@ package com.locaweb.locaweb.Classes;
 
 import com.locaweb.locaweb.Business.AccountBusiness;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Account extends Client {
@@ -21,8 +22,8 @@ public class Account extends Client {
     }
 
     private boolean blockedForADM;
-    private String dateOfCreate;
-    private byte lastPaidMonthly;
+    private Date dateOfCreate;
+    private Date lastPaidMonthly;
     private boolean isAdmin;
 
     public ItemCatalog getWatching() {
@@ -41,32 +42,31 @@ public class Account extends Client {
         this.isAdmin = isAdmin;
         this.blockedForADM = blocked;
         this.blockedForPay = true;
-        this.lastPaidMonthly = 0; //Considere que o Computador pegou o mes atual
-        this.dateOfCreate = "00/00/0000"; // considere que o Computador pegou a data atual
+        this.lastPaidMonthly = null;
+        this.dateOfCreate = new Date(); // considere que o Computador pegou a data atual
         this.id = id; // Considere que o banco de dados, passou o id
     }
     public int PaidMonthly(){
-        byte mes=0;
-        if(!this.blockedForADM && (this.lastPaidMonthly-mes!=0 ||  this.blockedForPay)){
+        Date mesAtual=new Date();
+        if(!this.blockedForADM && (lastPaidMonthly==null || (lastPaidMonthly.after(mesAtual)) ||  this.blockedForPay)){
             System.out.print("Pago");
             /*Imagine aqui a função de pagamento*/
-            this.lastPaidMonthly = mes;
+            this.lastPaidMonthly = mesAtual;
             this.blockedForPay = false;
             return 1;
-        }else if(this.lastPaidMonthly-mes==0){
-            System.out.println("A mensalidade já fooi paga");
+        }else if(this.lastPaidMonthly.before(mesAtual)){
+            System.out.println("A mensalidade já foi paga");
             return 0;
         }
         return -1;
     }
-    public int Blocked(){
-        this.blockedForADM = true;
-        return 1;
-    }
 
     public boolean accountIsBlocked(){
-        byte mes=0;
-        if(this.blockedForPay || this.blockedForADM){
+        Date mesAtual=new Date();
+        if(this.blockedForADM){
+            return true;
+        }else if(this.lastPaidMonthly == null || this.lastPaidMonthly.after(mesAtual) || this.blockedForPay){
+            this.blockedForPay = true;
             return true;
         }
         return false;
