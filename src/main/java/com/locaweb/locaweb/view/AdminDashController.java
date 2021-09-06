@@ -213,42 +213,49 @@ public class AdminDashController implements Initializable {
         String year = YearInput.getText();
         String time = TimeInput.getText();
 
-        if(isEditItem){
-            int catalogoId = catalogoSelecionado.getId();
-            if(Item.getSelectedToggle() == filmeBtn){
-                String continuation = Continuation.getText();
-                Movie newItem;
-                if(continuation.length()>0) {
-                    newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
-                }else newItem = new Movie(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre);
-                locaWeb.editarCatalago(newItem);
-            }else if(Item.getSelectedToggle() == SerieBtn){
-                String season = Season.getText();
-                String episode = Episode.getText();
-                Series newItem;
-                newItem = new Series(title,catalogoId, Integer.parseInt(year),Float.parseFloat(time),genre, Integer.parseInt(season),Integer.parseInt(episode));
-                locaWeb.editarCatalago(newItem);
+        try {
+            if (isEditItem) {
+                int catalogoId = catalogoSelecionado.getId();
+                if (Item.getSelectedToggle() == filmeBtn) {
+                    String continuation = Continuation.getText();
+                    Movie newItem;
+                    if (continuation.length() > 0) {
+                        newItem = new Movie(title, catalogoId, Integer.parseInt(year), Float.parseFloat(time), genre, continuation);
+                    } else
+                        newItem = new Movie(title, catalogoId, Integer.parseInt(year), Float.parseFloat(time), genre);
+                    locaWeb.editarCatalago(newItem);
+                } else if (Item.getSelectedToggle() == SerieBtn) {
+                    String season = Season.getText();
+                    String episode = Episode.getText();
+                    Series newItem;
+                    newItem = new Series(title, catalogoId, Integer.parseInt(year), Float.parseFloat(time), genre, Integer.parseInt(season), Integer.parseInt(episode));
+                    locaWeb.editarCatalago(newItem);
+                }
+            } else {
+                if (Item.getSelectedToggle() == filmeBtn) {
+                    String continuation = Continuation.getText();
+                    Movie newItem;
+                    if (continuation.length() > 0) {
+                        newItem = new Movie(title, 0, Integer.parseInt(year), Float.parseFloat(time), genre, continuation);
+                    } else newItem = new Movie(title, 0, Integer.parseInt(year), Float.parseFloat(time), genre);
+                    locaWeb.adicionarCatalogo(newItem);
+                } else if (Item.getSelectedToggle() == SerieBtn) {
+                    String season = Season.getText();
+                    String episode = Episode.getText();
+                    Series newItem;
+                    newItem = new Series(title, 0, Integer.parseInt(year), Float.parseFloat(time), genre, Integer.parseInt(season), Integer.parseInt(episode));
+                    locaWeb.adicionarCatalogo(newItem);
+                }
             }
-        }else{
-            if(Item.getSelectedToggle() == filmeBtn){
-                String continuation = Continuation.getText();
-                Movie newItem;
-                if(continuation.length()>0) {
-                    newItem = new Movie(title,0, Integer.parseInt(year),Float.parseFloat(time),genre,continuation);
-                }else newItem = new Movie(title,0, Integer.parseInt(year),Float.parseFloat(time),genre);
-                locaWeb.adicionarCatalogo(newItem);
-            }else if(Item.getSelectedToggle() == SerieBtn){
-                String season = Season.getText();
-                String episode = Episode.getText();
-                Series newItem;
-                newItem = new Series(title,0, Integer.parseInt(year),Float.parseFloat(time),genre, Integer.parseInt(season),Integer.parseInt(episode));
-                locaWeb.adicionarCatalogo(newItem);
-            }
+            carregarCatalogo(this.locaWeb.getCatalogo());
+            ClearInputItemTextt();
+            FormPaneItem.setOpacity(0);
+        }catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Alguns dos campos que era para ter números, recebeu texto(duração: float, ano,temporadas,episódios: int)");
+            alert.setTitle("Situação do Item do Catálogo");
+            alert.show();
         }
-        carregarCatalogo(this.locaWeb.getCatalogo());
-        ClearInputItemTextt();
-        FormPaneItem.setOpacity(0);
-
     }
 
     private void ClearInputItemTextt() {

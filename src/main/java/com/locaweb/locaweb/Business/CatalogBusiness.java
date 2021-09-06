@@ -4,6 +4,8 @@ import com.locaweb.locaweb.Classes.ItemCatalog;
 import com.locaweb.locaweb.Classes.Movie;
 import com.locaweb.locaweb.Classes.Series;
 import com.locaweb.locaweb.Repository.RepositoryCatalog;
+import javafx.scene.control.Alert;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public class CatalogBusiness {
             return repositorio.getCatalog().stream().filter(item -> item instanceof Movie)
                     .collect(Collectors.toCollection(ArrayList::new));
         }catch(NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
             return null;
         }
     }
@@ -32,7 +34,7 @@ public class CatalogBusiness {
             return repositorio.getCatalog().stream().filter(item -> item instanceof Series)
                     .collect(Collectors.toCollection(ArrayList::new));
         }catch (NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
             return null;
         }
     }
@@ -40,8 +42,11 @@ public class CatalogBusiness {
     public void adicionar(ItemCatalog item){
         try {
             repositorio.include(item);
+            showAlert("Item adicionado com sucesso!",Alert.AlertType.CONFIRMATION);
         }catch (NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
+        }catch (NumberFormatException e){
+            showAlert("Alguns dos campos que era para ter números, recebeu texto", Alert.AlertType.ERROR);
         }
     }
 
@@ -49,7 +54,7 @@ public class CatalogBusiness {
         try {
             return repositorio.searchByName(nome);
         }catch (NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
             return null;
         }
     }
@@ -58,10 +63,10 @@ public class CatalogBusiness {
         try {
             boolean deletou = repositorio.delete(catalogoSelecionado.getId());
             if (deletou) {
-                System.out.println("DEU BOM!");
+                showAlert("Removido com sucesso", Alert.AlertType.CONFIRMATION);
             }
         }catch (NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
         }
     }
 
@@ -69,7 +74,17 @@ public class CatalogBusiness {
         try {
             repositorio.update(newItem);
         }catch (NullPointerException e){
-            System.out.println("CATALOGO NÃO INSTANCIADO");
+            showAlert("Item não instanciado", Alert.AlertType.ERROR);
+        }catch (NumberFormatException e){
+            showAlert("Alguns dos campos que era para ter números, recebeu texto", Alert.AlertType.ERROR);
         }
+
+    }
+
+    protected void showAlert(String message, Alert.AlertType alerta){
+        Alert alert = new Alert(alerta);
+        alert.setHeaderText(message);
+        alert.setTitle("Situação do Item do Catálogo");
+        alert.show();
     }
 }

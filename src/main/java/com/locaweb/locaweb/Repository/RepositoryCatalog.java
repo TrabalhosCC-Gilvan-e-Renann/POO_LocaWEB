@@ -38,10 +38,8 @@ public class RepositoryCatalog implements IRepositoryCatalog{
         for (int i=0; i<n; i++) {
             if(id==this.itens.get(i).getId()){
                 pos=i;
-                System.out.printf("Item Encintrado");
             }
         }
-        System.out.printf("Busca Encerrada");
         return pos;
     }
 
@@ -52,17 +50,10 @@ public class RepositoryCatalog implements IRepositoryCatalog{
     public Boolean delete(int id){
         int index = searchById(id);
         if(index == -1) {
-            System.out.printf("Item não Existe");
             return false;
         }else{
-            try{
-                this.itens.remove(index);
-                System.out.printf("Bye Bye Item");
-                return true;
-            }catch (IndexOutOfBoundsException e){
-                System.out.printf("Acesso ao item foi perdido, tente novamente os nos contate pelo email Locaweb@locadoraweb.com");
-                return false;
-            }
+            this.itens.remove(index);
+            return true;
         }
     }
 
@@ -72,14 +63,9 @@ public class RepositoryCatalog implements IRepositoryCatalog{
             System.out.printf("Item não Existe");
             return false;
         }else{
-            try {
-                this.itens.get(index).update(item);
-                System.out.printf("O Item mudou");
-                return true;
-            }catch (IndexOutOfBoundsException e){
-                System.out.printf("Acesso ao item foi perdido, tente novamente os nos contate pelo email Locaweb@locadoraweb.com");
-                return false;
-            }
+            this.itens.get(index).update(item);
+            System.out.printf("O Item mudou");
+            return true;
         }
     }
 
