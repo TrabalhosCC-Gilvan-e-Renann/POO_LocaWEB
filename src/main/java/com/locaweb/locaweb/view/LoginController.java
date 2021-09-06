@@ -2,6 +2,8 @@ package com.locaweb.locaweb.view;
 
 import com.locaweb.locaweb.Classes.Account;
 import com.locaweb.locaweb.Classes.LocaWEB;
+import com.locaweb.locaweb.Exceptions.ClienteJaExisteException;
+import com.locaweb.locaweb.Exceptions.ClienteNaoExisteException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,8 +66,30 @@ public class LoginController implements Initializable {
 
     private Boolean isLogin = true;
 
+    private boolean disableBtn(){
+        String email = EmailInput.getText();
+        String senha = PassInput.getText();
+        if(isLogin){
+            boolean disable = (email.trim().isEmpty() || senha.trim().isEmpty());
+            SignInBtn.setDisable(disable);
+            return disable;
+        }else{
+            String cpf = CpfInput.getText();
+            String nome = NameInput.getText();
+            String card = CardInput.getText();
+            boolean disable = (email.trim().isEmpty() || senha.trim().isEmpty() || cpf.trim().isEmpty() || nome.trim().isEmpty() || card.trim().isEmpty() );
+            SignInBtn.setDisable(disable);
+            return disable;
+        }
+    }
+
     @FXML
-    protected void LogarClick(ActionEvent event) throws IOException {
+    protected void keyReleased(){
+        disableBtn();
+    }
+
+    @FXML
+    protected void LogarClick(ActionEvent event) throws IOException, ClienteJaExisteException, ClienteNaoExisteException {
         if(isLogin){
             String email = EmailInput.getText();
             String senha = PassInput.getText();
@@ -119,6 +143,7 @@ public class LoginController implements Initializable {
         Image image = new Image("popcorn.png");
         popcornIMG.setImage(image);
         popcornIMG.setCache(true);
+        SignInBtn.setDisable(true);
     }
 
     @FXML
@@ -156,6 +181,7 @@ public class LoginController implements Initializable {
             SignInBtn.setText("Logar");
             isLogin = true;
         }
+        disableBtn();
 
     }
 

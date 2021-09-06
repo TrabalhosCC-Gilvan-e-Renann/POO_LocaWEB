@@ -1,6 +1,8 @@
 package com.locaweb.locaweb.Business;
 
 import com.locaweb.locaweb.Classes.Account;
+import com.locaweb.locaweb.Exceptions.ClienteJaExisteException;
+import com.locaweb.locaweb.Exceptions.ClienteNaoExisteException;
 import com.locaweb.locaweb.Repository.IRepositorioAccounts;
 import com.locaweb.locaweb.Repository.RepositoryAccounts;
 import javafx.scene.control.Alert;
@@ -16,24 +18,35 @@ public class AccountBusiness {
         this.repositorio = repositorio;
     }
 
-    public Account logar(String email,String senha) {
-        return repositorio.logar(email,senha);
+    public Account logar(String email,String senha) throws ClienteNaoExisteException {
+        try {
+            Account conta = repositorio.logar(email, senha);
+            if (conta == null) {
+                throw new ClienteNaoExisteException();
+            } else {
+                return conta;
+            }
+        }catch (NullPointerException e){
+            showAlert("Conta não instanciada", Alert.AlertType.ERROR);
+        }catch (ClienteNaoExisteException e){
+            showAlert(e.getMessage(), Alert.AlertType.ERROR);
+        }
+        return null;
     }
 
-    public void adicionar(Account conta) {
+    public void adicionar(Account conta) throws ClienteJaExisteException {
         try {
             boolean existe = repositorio.existe(conta.getEmail());
             if (existe) {
-                System.out.println("CONTA JÁ EXISTENTE");
+                throw new ClienteJaExisteException();
             } else {
                 repositorio.adicionar(conta);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText("Cadastrado com Sucesso!");
-                alert.setTitle("Situação do Cadastro");
-                alert.show();
+                showAlert("Cadastrado com êxito", Alert.AlertType.CONFIRMATION);
             }
         }catch (NullPointerException e){
-            System.out.println("CONTA NÃO INSTANCIADA");
+            showAlert("Conta não instanciada", Alert.AlertType.ERROR);
+        }catch (ClienteJaExisteException e){
+            showAlert(e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -41,7 +54,7 @@ public class AccountBusiness {
         try {
             return repositorio.getContas();
         }catch (NullPointerException e){
-            System.out.println("CONTA NÃO INSTANCIADA");
+            showAlert("Contas não instanciadas", Alert.AlertType.ERROR);
             return null;
         }
     }
@@ -50,7 +63,7 @@ public class AccountBusiness {
         try {
             repositorio.atualizar(conta, userId);
         } catch (NullPointerException e){
-            System.out.println("CONTA NÃO INSTANCIADA");
+            showAlert("Conta não instanciada", Alert.AlertType.ERROR);
         }
     }
 
@@ -58,7 +71,14 @@ public class AccountBusiness {
         try {
             repositorio.remover(conta);
         } catch (NullPointerException e){
-            System.out.println("CONTA NÃO INSTANCIADA");
+            showAlert("Conta não instanciada", Alert.AlertType.ERROR);
         }
+    }
+
+    protected void showAlert(String message, Alert.AlertType alerta){
+        Alert alert = new Alert(alerta);
+        alert.setHeaderText(message);
+        alert.setTitle("Situação da Conta");
+        alert.show();
     }
 }

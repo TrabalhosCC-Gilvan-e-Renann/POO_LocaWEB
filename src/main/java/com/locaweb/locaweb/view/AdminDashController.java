@@ -1,6 +1,7 @@
 package com.locaweb.locaweb.view;
 
 import com.locaweb.locaweb.Classes.*;
+import com.locaweb.locaweb.Exceptions.ClienteJaExisteException;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -261,7 +262,7 @@ public class AdminDashController implements Initializable {
     }
 
     @FXML
-    protected void ConfirmClick(ActionEvent event) throws IOException {
+    protected void ConfirmClick(ActionEvent event) throws IOException, ClienteJaExisteException {
         String email = EmailInput.getText();
         String senha = PassInput.getText();
         String cpf = CpfInput.getText();

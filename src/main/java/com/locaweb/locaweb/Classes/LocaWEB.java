@@ -2,6 +2,8 @@ package com.locaweb.locaweb.Classes;
 
 import com.locaweb.locaweb.Business.AccountBusiness;
 import com.locaweb.locaweb.Business.CatalogBusiness;
+import com.locaweb.locaweb.Exceptions.ClienteJaExisteException;
+import com.locaweb.locaweb.Exceptions.ClienteNaoExisteException;
 import com.locaweb.locaweb.Repository.RepositoryAccounts;
 import com.locaweb.locaweb.Repository.RepositoryCatalog;
 
@@ -16,6 +18,10 @@ public class LocaWEB {
         return contaLogada;
     }
 
+    public void setContaLogada(Account contaLogada) {
+        this.contaLogada = contaLogada;
+    }
+
     private Account contaLogada;
 
     public LocaWEB(){
@@ -25,12 +31,12 @@ public class LocaWEB {
     }
 
     //CONTAS
-    public Account logar(String email, String senha) {
+    public Account logar(String email, String senha) throws ClienteNaoExisteException {
         contaLogada = contas.logar(email,senha);
-        return contas.logar(email, senha);
+        return contaLogada;
     }
 
-    public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard,boolean blocked) {
+    public void adicionarCliente(String name, String cpf, String email, String pass, String numberCard,boolean blocked) throws ClienteJaExisteException {
         Account conta = new Account(name, cpf, email,pass,numberCard,false,0,blocked);
         contas.adicionar(conta);
     }
